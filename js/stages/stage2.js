@@ -10,9 +10,6 @@ export function resetElements() {
   Utils.hideElement(Utils.getElement('knowledge-core'));
   Utils.hideElement(Utils.getElement('core-ring-1'));
   Utils.hideElement(Utils.getElement('core-ring-2'));
-  
-  // 重置火箭
-  Utils.hideElement(Utils.getElement('knowledge-rocket'));
 
   // 重置文檔粒子
   document.querySelectorAll('.doc-particle').forEach(el => {
@@ -61,11 +58,6 @@ export function handleStepStart(stepIndex) {
       Utils.showElementWithDelay(Utils.getElement('knowledge-point-2'), 500);
       Utils.showElementWithDelay(Utils.getElement('knowledge-point-3'), 1000);
       Utils.showElementWithDelay(Utils.getElement('knowledge-point-4'), 1500);
-      
-      // 啟動火箭
-      setTimeout(() => {
-        Utils.showElement(Utils.getElement('knowledge-rocket'));
-      }, 2000);
       break;
 
     case 3: // 知識優化完成
