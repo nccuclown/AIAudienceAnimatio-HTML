@@ -241,33 +241,12 @@ const Config = {
       </div>
     `,
 
-    // 第二階段視覺區域
+    // 第二階段視覺區域 - 修改後的版本
     stage2Visual: `
-      <!-- RAG標籤 -->
-      <div class="rag-label" id="rag-label">RAG - Retrieval-Augmented Generation</div>
-
       <!-- 知識庫核心 -->
       <div class="knowledge-core" id="knowledge-core">
         <div class="core-ring" id="core-ring-1"></div>
         <div class="core-ring" id="core-ring-2"></div>
-      </div>
-
-      <!-- 知識點 -->
-      <div class="knowledge-point" id="knowledge-point-1">
-        <span style="color: #26c6da; margin-right: 5px;">✓</span>
-        從1234篇產業專案中提取關鍵詞彙
-      </div>
-      <div class="knowledge-point" id="knowledge-point-2">
-        <span style="color: #26c6da; margin-right: 5px;">✓</span>
-        整合543份產業白皮書
-      </div>
-      <div class="knowledge-point" id="knowledge-point-3">
-        <span style="color: #26c6da; margin-right: 5px;">✓</span>
-        分析527個廣告投放數據
-      </div>
-      <div class="knowledge-point" id="knowledge-point-4">
-        <span style="color: #26c6da; margin-right: 5px;">✓</span>
-        學習372個成功提案
       </div>
 
       <!-- 文檔粒子 -->

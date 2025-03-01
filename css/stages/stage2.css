@@ -16,6 +16,29 @@
   opacity: 1;
 }
 
+/* 動態核心能量效果 */
+.core-energy {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, rgba(255, 187, 0, 0.7), rgba(255, 138, 0, 0.4) 60%, rgba(0, 0, 0, 0));
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.core-energy.active {
+  opacity: 1;
+  transform: scale(1);
+  animation: corePulse 4s infinite alternate;
+}
+
+@keyframes corePulse {
+  0% { transform: scale(0.9); background-position: 30% 30%; }
+  50% { transform: scale(1.02); background-position: 40% 40%; }
+  100% { transform: scale(0.95); background-position: 35% 35%; }
+}
+
 .core-ring {
   position: absolute;
   inset: -20px;
@@ -41,53 +64,68 @@
   opacity: 0.3;
 }
 
+/* 知識點連接線 */
+.knowledge-connection {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 187, 0, 0.8), rgba(38, 198, 218, 0.2));
+  transform-origin: left center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+}
+
+.knowledge-connection.active {
+  opacity: 0.6;
+  animation: connectionPulse 2s infinite alternate;
+}
+
+@keyframes connectionPulse {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.7; }
+}
+
+/* 將知識點重新定位到四個角落 */
 .knowledge-point {
   position: absolute;
-  padding: 8px 12px;
+  padding: 10px 15px;
   background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 6px;
-  font-size: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
   opacity: 0;
-  transform: translateY(10px);
+  transform: scale(0.95);
   transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 5;
+  max-width: 220px;
 }
 
 .knowledge-point.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: scale(1);
 }
 
-.knowledge-point:nth-child(3) {
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%) translateY(10px);
+/* 知識點位置調整 */
+.knowledge-point-top-left {
+  top: 20%;
+  left: 5%;
   border: 1px solid #ffbb00;
 }
 
-.knowledge-point:nth-child(3).active {
-  transform: translateX(-50%) translateY(0);
-}
-
-.knowledge-point:nth-child(4) {
-  top: 50%;
+.knowledge-point-top-right {
+  top: 20%;
   right: 5%;
-  border: 1px solid #ff8a00;
-}
-
-.knowledge-point:nth-child(5) {
-  bottom: 10%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-10px);
   border: 1px solid #26c6da;
 }
 
-.knowledge-point:nth-child(5).active {
-  transform: translateX(-50%) translateY(0);
+.knowledge-point-bottom-left {
+  bottom: 20%;
+  left: 5%;
+  border: 1px solid #ff8a00;
 }
 
-.knowledge-point:nth-child(6) {
-  top: 50%;
-  left: 5%;
+.knowledge-point-bottom-right {
+  bottom: 20%;
+  right: 5%;
   border: 1px solid #ff5500;
 }
 
@@ -103,32 +141,108 @@
 
 .doc-particle.active {
   opacity: 1;
+  animation: docFloat 8s infinite ease-in-out;
 }
 
-.rag-label {
+/* 添加文檔粒子飄動 */
+@keyframes docFloat {
+  0%, 100% { transform: rotate(45deg) translate(0, 0); }
+  25% { transform: rotate(45deg) translate(10px, 5px); }
+  50% { transform: rotate(45deg) translate(0, 10px); }
+  75% { transform: rotate(45deg) translate(-5px, 5px); }
+}
+
+/* 文檔粒子流向核心動畫 */
+.doc-particle.flowing {
+  animation: flowToCore 2s forwards;
+}
+
+@keyframes flowToCore {
+  0% {
+    transform: rotate(45deg) scale(1);
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.8;
+    transform: rotate(0) scale(0.8);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(0) scale(0.5) translate(var(--flow-x), var(--flow-y));
+  }
+}
+
+/* 刪除多餘的 rag-label */
+/* .rag-label 已移除 */
+
+/* RAG過程標籤 */
+.rag-process {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%) translateY(-20px);
-  padding: 5px 10px;
-  background-color: rgba(0, 0, 0, 0.7);
-  border: 1px solid #ffbb00;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  color: #ffbb00;
-  white-space: nowrap;
+  top: 8%;
+  right: 5%;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  border: 1px solid #26c6da;
+  color: white;
   opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  min-width: 220px;
+  max-width: 250px;
+}
+
+.rag-process.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.rag-process-title {
+  font-weight: bold;
+  color: #26c6da;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+}
+
+.rag-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #26c6da;
+  margin-right: 8px;
+  animation: pulse 1.5s infinite;
+}
+
+.rag-step {
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(-10px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.rag-label.active {
+.rag-step.active {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(0);
 }
 
-/* 知识库优化指示器 */
+.rag-step-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ff8a00;
+  margin-right: 8px;
+}
+
+/* 知识库优化框 */
 .optimization-box {
   position: absolute;
+  left: 50%;
   bottom: 15%;
   background-color: rgba(0, 0, 0, 0.8);
   padding: 12px 18px;
@@ -136,13 +250,14 @@
   border: 1px solid #ffbb00;
   color: white;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translate(-50%, 20px);
   transition: opacity 0.5s ease, transform 0.5s ease;
+  min-width: 220px;
 }
 
 .optimization-box.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(-50%, 0);
 }
 
 .optimization-title {
@@ -150,6 +265,7 @@
   font-weight: bold;
   color: #ffbb00;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .optimization-item {
@@ -169,4 +285,104 @@
 
 .optimization-status {
   transition: all 0.3s ease;
+}
+
+/* 資料量統計卡 */
+.data-stats {
+  position: absolute;
+  left: 5%;
+  top: 8%;
+  padding: 12px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  border: 1px solid #ffbb00;
+  min-width: 200px;
+  max-width: 250px;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.data-stats.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.data-stats-title {
+  font-weight: bold;
+  color: #ffbb00;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.data-stat-item {
+  font-size: 0.75rem;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.data-stat-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.data-stat-value {
+  font-weight: bold;
+  color: #f8f8f8;
+}
+
+/* 知識嵌入視覺化 */
+.embedding-viz {
+  position: absolute;
+  width: 85%;
+  height: 85%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.embedding-point {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background-color: rgba(255, 187, 0, 0.6);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.embedding-point.active {
+  opacity: 1;
+}
+
+.embedding-point.highlight {
+  width: 5px;
+  height: 5px;
+  background-color: #26c6da;
+  box-shadow: 0 0 8px rgba(38, 198, 218, 0.8);
+  z-index: 3;
+}
+
+/* 知識庫標題 */
+.knowledge-title {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ffbb00;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 187, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.knowledge-title.active {
+  opacity: 1;
 }
