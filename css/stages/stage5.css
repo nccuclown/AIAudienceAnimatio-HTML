@@ -23,21 +23,7 @@
   transform: scale(1);
 }
 
-.report-title {
-  color: #ffbb00;
-  font-size: 1.5rem;
-  text-shadow: 0 0 5px rgba(255, 184, 0, 0.5);
-  text-align: center;
-  margin-bottom: 8px;
-}
-
-.report-subtitle {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: white;
-  text-align: center;
-}
+/* 移除了 report-title 和 report-subtitle 的樣式，為內容區域提供更多空間 */
 
 .report-content {
   display: flex;

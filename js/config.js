@@ -489,9 +489,6 @@ const Config = {
     stage5Visual: `
       <!-- 報告容器 -->
       <div class="report-container" id="report-container">
-        <h3 class="report-title">受眾分析報告</h3>
-        <div class="report-subtitle">科技迷 - 高消費力</div>
-
         <div class="report-content">
           <div class="main-sections">
             <div class="left-column">
