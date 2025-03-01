@@ -177,7 +177,6 @@ const Config = {
     // 階段模板
     stage: (stageId, title, description) => `
       <div class="stage" id="stage-${stageId}">
-        <h2 class="stage-title">${title}</h2>
         <div class="stage-visual" id="stage-visual-${stageId}">
           <!-- 由特定階段的JavaScript生成 -->
         </div>
@@ -588,7 +587,30 @@ const Config = {
         <div class="report-glow" id="report-glow"></div>
       </div>
     `
-  }
+  },
+  // 新增 stageContent 陣列，包含每個階段的視覺內容
+  stageContent: [
+    // 第一階段
+    `
+      <div class="stage-visual" id="stage1-visual"></div>
+    `,
+    // 第二階段
+    `
+      <div class="stage-visual" id="stage2-visual"></div>
+    `,
+    // 第三階段
+    `
+      <div class="stage-visual" id="stage3-visual"></div>
+    `,
+    // 第四階段
+    `
+      <div class="stage-visual" id="stage4-visual"></div>
+    `,
+    // 第五階段
+    `
+      <div class="stage-visual" id="stage5-visual"></div>
+    `
+  ]
 };
 
 // 改为默认导出

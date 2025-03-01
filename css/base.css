@@ -232,19 +232,11 @@ input:checked + .slider:before {
   visibility: visible;
 }
 
-.stage-title {
-  text-align: center;
-  color: #ffbb00;
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-  text-shadow: 0 0 8px rgba(255, 187, 0, 0.5);
-}
-
 .stage-visual {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 350px;
+  height: 370px; /* 增加高度來彌補刪除標題後的空間 */
   position: relative;
   overflow: hidden;
   margin-bottom: 20px;
