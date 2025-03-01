@@ -396,17 +396,24 @@ const Config = {
 
     // 第四階段視覺區域
     stage4Visual: `
-      <!-- 匹配容器 -->
-      <div class="matching-container">
-        <!-- 球體粒子背景 -->
-        <div style="position: absolute; width: 300px; height: 300px; border-radius: 50%; left: 50%; top: 40%; transform: translate(-50%, -50%);">
-          <!-- 粒子 生成20个 -->
-          <div class="sphere-particle" style="top: 30%; left: 20%; background-color: #ffbb00; animation-delay: 0.2s;"></div>
-          <div class="sphere-particle" style="top: 50%; left: 70%; background-color: #ff8a00; animation-delay: 0.5s;"></div>
-          <div class="sphere-particle" style="top: 80%; left: 40%; background-color: #ff5500; animation-delay: 0.7s;"></div>
-          <div class="sphere-particle" style="top: 20%; left: 60%; background-color: #26c6da; animation-delay: 0.3s;"></div>
-          <div class="sphere-particle" style="top: 70%; left: 30%; background-color: #00bcd4; animation-delay: 0.1s;"></div>
-          <!-- 添加更多粒子... -->
+      <!-- 深度匹配視覺元素 -->
+        <div class="ai-matching-visualization" id="ai-matching-visualization">
+          <div class="algorithm-node" id="algorithm-node-1">特徵提取</div>
+          <div class="algorithm-node" id="algorithm-node-2">模式識別</div>
+          <div class="algorithm-node" id="algorithm-node-3">相似度計算</div>
+          <div class="algorithm-node" id="algorithm-node-4">匹配優化</div>
+
+          <div class="data-flow-line" id="data-flow-1"></div>
+          <div class="data-flow-line" id="data-flow-2"></div>
+          <div class="data-flow-line" id="data-flow-3"></div>
+
+          <div class="data-point" id="data-point-1"></div>
+          <div class="data-point" id="data-point-2"></div>
+          <div class="data-point" id="data-point-3"></div>
+          <div class="data-point" id="data-point-4"></div>
+          <div class="data-point" id="data-point-5"></div>
+
+          <div class="match-percentage" id="match-percentage">匹配進度: <span id="match-percent-value">0</span>%</div>
         </div>
 
         <!-- 產品需求卡片 -->
