@@ -88,7 +88,6 @@ export function handleStepStart(stepIndex) {
     case 2: // 受眾細分
       // 顯示細分框
       Utils.showElement(Utils.getElement('match-segment-box'));
-      Utils.getElement('match-segment-box').style.left = '50%';
       break;
 
     case 3: // 匹配結果優化
@@ -109,20 +108,6 @@ export function handleStepStart(stepIndex) {
 export function handleProgress(stepIndex, progress) {
   switch(stepIndex) {
     case 2: // 受眾細分
-      // 更新偏好匹配進度
-      const preferenceProgress = Math.min(Math.floor(progress * 2), 100);
-      Utils.setProgressBar(Utils.getElement('preference-bar'), preferenceProgress);
-      Utils.updateText(Utils.getElement('preference-percentage'), `${preferenceProgress}%`);
-
-      // 更新消費力評估進度
-      const spendingProgress = Math.min(Math.floor(progress * 1.4), 100);
-      Utils.setProgressBar(Utils.getElement('spending-bar'), spendingProgress);
-      Utils.updateText(Utils.getElement('spending-percentage'), `${spendingProgress}%`);
-
-      // 更新行為模式分析進度
-      const behaviorProgress = Math.min(Math.floor(progress * 1.1), 100);
-      Utils.setProgressBar(Utils.getElement('behavior-bar'), behaviorProgress);
-      Utils.updateText(Utils.getElement('behavior-percentage'), `${behaviorProgress}%`);
       break;
 
     case 3: // 匹配結果優化
