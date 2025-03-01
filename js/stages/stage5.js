@@ -55,7 +55,17 @@ export function handleStepStart(stepIndex) {
   switch(stepIndex) {
     case 0: // 報告架構生成
       // 顯示報告容器
-      Utils.showElement(Utils.getElement('report-container'));
+      const reportContainer = Utils.getElement('report-container');
+      Utils.showElement(reportContainer);
+      
+      // 確保容器在視窗中央
+      setTimeout(() => {
+        const containerHeight = reportContainer.offsetHeight;
+        const windowHeight = window.innerHeight;
+        if (containerHeight > windowHeight - 200) {
+          reportContainer.style.height = (windowHeight - 200) + 'px';
+        }
+      }, 100);
       break;
 
     case 1: // 人口統計分析
