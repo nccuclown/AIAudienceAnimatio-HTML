@@ -87,16 +87,22 @@ export function handleStepStart(stepIndex) {
       // 顯示匹配條件
       Utils.showElementWithDelay(Utils.getElement('match-criteria-1'), 500);
       Utils.showElementWithDelay(Utils.getElement('match-criteria-2'), 1000);
+      
+      // 向右移動匹配條件
+      Utils.getElement('match-criteria-1').style.left = '30%';
+      Utils.getElement('match-criteria-2').style.left = '33%';
       break;
 
     case 2: // 受眾細分
       // 顯示細分框
       Utils.showElement(Utils.getElement('match-segment-box'));
+      Utils.getElement('match-segment-box').style.left = '50%';
       break;
 
     case 3: // 匹配結果優化
       // 顯示匹配結果
       Utils.showElement(Utils.getElement('match-result'));
+      Utils.getElement('match-result').style.left = '70%';
 
       // 顯示特性標籤
       Utils.showElementWithDelay(Utils.getElement('trait-tag-1'), 200);
