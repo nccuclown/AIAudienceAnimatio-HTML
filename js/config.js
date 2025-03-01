@@ -270,6 +270,9 @@ const Config = {
       <div class="doc-particle" id="doc-particle-3" style="top: 20%; left: 40%; background-color: #26c6da;"></div>
       <div class="doc-particle" id="doc-particle-4" style="top: 50%; left: 30%; background-color: #ff5500;"></div>
       <div class="doc-particle" id="doc-particle-5" style="top: 70%; left: 50%; background-color: #ffbb00;"></div>
+      
+      <!-- 知識火箭 -->
+      <div class="knowledge-rocket" id="knowledge-rocket"></div>
 
       <!-- 知识库优化 -->
       <div class="optimization-box" id="optimization-box">
