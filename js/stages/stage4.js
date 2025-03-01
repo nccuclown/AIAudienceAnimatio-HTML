@@ -20,9 +20,7 @@ export function resetElements() {
   Utils.hideElement(Utils.getElement('match-ripple'));
   Utils.hideElement(Utils.getElement('match-ripple-2'));
 
-  // 重置匹配條件
-  Utils.hideElement(Utils.getElement('match-criteria-1'));
-  Utils.hideElement(Utils.getElement('match-criteria-2'));
+  // 匹配條件已被移除
 
   // 重置細分框
   Utils.hideElement(Utils.getElement('match-segment-box'));
@@ -84,13 +82,7 @@ export function handleStepStart(stepIndex) {
       Utils.showElement(Utils.getElement('match-ripple'));
       Utils.showElement(Utils.getElement('match-ripple-2'));
 
-      // 顯示匹配條件
-      Utils.showElementWithDelay(Utils.getElement('match-criteria-1'), 500);
-      Utils.showElementWithDelay(Utils.getElement('match-criteria-2'), 1000);
-      
-      // 向右移動匹配條件
-      Utils.getElement('match-criteria-1').style.left = '30%';
-      Utils.getElement('match-criteria-2').style.left = '33%';
+      // 匹配條件已被移除，無需顯示
       break;
 
     case 2: // 受眾細分

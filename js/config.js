@@ -431,16 +431,6 @@ const Config = {
         <div class="match-ripple" id="match-ripple"></div>
         <div class="match-ripple-2" id="match-ripple-2"></div>
 
-        <!-- 匹配条件 -->
-        <div class="match-criteria" id="match-criteria-1" style="top: 30%; left: 15%;">
-          <div style="margin-bottom: 3px; color: #26c6da;">特徵匹配</div>
-          科技偏好用戶: 1.8M
-        </div>
-
-        <div class="match-criteria" id="match-criteria-2" style="top: 45%; left: 15%;">
-          <div style="margin-bottom: 3px; color: #ff8a00;">消費力匹配</div>
-        </div>
-
         <!-- 细分进度框 -->
         <div class="match-segment-box" id="match-segment-box">
           <div class="segment-title">細分受眾進行中</div>
