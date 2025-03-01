@@ -24,6 +24,12 @@
   50% { width: 60px; opacity: 1; }
 }
 
+@keyframes corePulse {
+  0% { transform: scale(0.95); background-position: 30% 30%; }
+  50% { transform: scale(1.05); background-position: 40% 40%; }
+  100% { transform: scale(0.98); background-position: 35% 35%; }
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
