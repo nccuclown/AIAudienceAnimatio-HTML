@@ -544,14 +544,15 @@ const Config = {
                     <div class="behavior-label">購買頻率</div>
                     <div class="behavior-value">每月1-2次</div>
                   </div>
-                  <div class="behavior-item" id="behavior-item-3">
-                    <div class="behavior-label">品牌忠誠度</div>
-                    <div class="behavior-value">中偏高</div>
-                  </div>
-                  <div class="behavior-item" id="behavior-item-4">
-                    <div class="behavior-label">研究習慣</div>
-                    <div class="behavior-value">深度研究型</div>
-                  </div>
+                </div>
+
+                <div class="section-title" style="margin-top: 10px;">常購買產品類型</div>
+                <div class="interest-tags" style="margin-top: 5px;">
+                  <div class="interest-tag" id="product-tag-1">智能手機</div>
+                  <div class="interest-tag" id="product-tag-2">筆記型電腦</div>
+                  <div class="interest-tag" id="product-tag-3">智能穿戴</div>
+                  <div class="interest-tag" id="product-tag-4">攝影器材</div>
+                  <div class="interest-tag" id="product-tag-5">音響設備</div>
                 </div>
               </div>
 

@@ -123,6 +123,14 @@ export function handleStepStart(stepIndex) {
                   tag.classList.add('active');
                 }, index * ANIMATION_TIMES.INTEREST_INTERVAL);
               });
+              
+              // 新增產品類型標籤動畫
+              const productTags = document.querySelectorAll('[id^="product-tag-"]');
+              productTags.forEach((tag, index) => {
+                setTimeout(() => {
+                  tag.classList.add('active');
+                }, index * ANIMATION_TIMES.INTEREST_INTERVAL + 100);
+              });
             }, ANIMATION_TIMES.INTEREST_START);
 
             // 顯示分析框
