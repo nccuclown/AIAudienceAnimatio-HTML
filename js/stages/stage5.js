@@ -2,7 +2,15 @@
 import * as Utils from '../utils.js';
 
 const ANIMATION_TIMES = {
-  SUGGESTIONS_START: 500,
+  SECTION_APPEAR: 200,
+  GENDER_CHARTS: 500,
+  AGE_BARS: 700,
+  BEHAVIOR_START: 900,
+  BEHAVIOR_INTERVAL: 200,
+  INTEREST_START: 1200,
+  INTEREST_INTERVAL: 200,
+  ANALYSIS_BOX: 1800,
+  SUGGESTIONS_START: 2000,
   SUGGESTION_ITEM_INTERVAL: 200,
 };
 
@@ -75,10 +83,10 @@ export function handleStepStart(stepIndex) {
             sections.forEach((section, index) => {
               setTimeout(() => {
                 section.classList.add('active');
-              }, index * 200);
+              }, index * ANIMATION_TIMES.SECTION_APPEAR);
             });
 
-            // 顯示性別標籤和條形圖 (調整順序)
+            // 顯示性別標籤和條形圖
             setTimeout(() => {
               const genderLabels = Utils.getElement('gender-labels');
               const maleBar = Utils.getElement('male-bar');
@@ -87,14 +95,41 @@ export function handleStepStart(stepIndex) {
               if (genderLabels) Utils.showElement(genderLabels);
               if (maleBar) Utils.showElement(maleBar);
               if (femaleBar) Utils.showElement(femaleBar);
+            }, ANIMATION_TIMES.GENDER_CHARTS);
 
-
-              // 顯示年齡條
+            // 顯示年齡條
+            setTimeout(() => {
               const ageBars = document.querySelectorAll('.age-bar');
               ageBars.forEach((bar) => {
                 bar.classList.add('active');
               });
-            }, 500);
+            }, ANIMATION_TIMES.AGE_BARS);
+
+            // 顯示行為項目
+            setTimeout(() => {
+              const behaviorItems = document.querySelectorAll('.behavior-item');
+              behaviorItems.forEach((item, index) => {
+                setTimeout(() => {
+                  item.classList.add('active');
+                }, index * ANIMATION_TIMES.BEHAVIOR_INTERVAL);
+              });
+            }, ANIMATION_TIMES.BEHAVIOR_START);
+
+            // 顯示興趣標籤
+            setTimeout(() => {
+              const interestTags = document.querySelectorAll('.interest-tag');
+              interestTags.forEach((tag, index) => {
+                setTimeout(() => {
+                  tag.classList.add('active');
+                }, index * ANIMATION_TIMES.INTEREST_INTERVAL);
+              });
+            }, ANIMATION_TIMES.INTEREST_START);
+
+            // 顯示分析框
+            setTimeout(() => {
+              const analysisBox = Utils.getElement('analysis-box');
+              if (analysisBox) Utils.showElement(analysisBox);
+            }, ANIMATION_TIMES.ANALYSIS_BOX);
           }, 300);
         }
       }, 100);
@@ -115,7 +150,8 @@ export function handleStepStart(stepIndex) {
 
     case 3: // 最終報告生成
       // 顯示行銷建議
-      Utils.showElement(Utils.getElement('marketing-suggestions'));
+      const marketingSuggestions = Utils.getElement('marketing-suggestions');
+      if (marketingSuggestions) Utils.showElement(marketingSuggestions);
 
       // 逐個顯示建議項目
       document.querySelectorAll('.suggestion-item').forEach((item, index) => {
@@ -135,10 +171,10 @@ export function handleStepStart(stepIndex) {
 
 // 處理進度更新
 export function handleProgress(stepIndex, progress) {
-  // 可以根據進度百分比更新某些元素
+  // 根據進度百分比更新元素
   switch(stepIndex) {
     case 1: // 人口統計分析
-      if (progress > 80) {
+      if (progress > 50) {
         // 確保性別分布完全顯示
         const maleBar = Utils.getElement('male-bar');
         const femaleBar = Utils.getElement('female-bar');
@@ -148,7 +184,22 @@ export function handleProgress(stepIndex, progress) {
       break;
 
     case 2: // 行為偏好分析
-      // 可以根據進度更新分析框的透明度等
+      // 根據進度顯示行為項目
+      if (progress > 25) Utils.showElement(Utils.getElement('behavior-item-1'));
+      if (progress > 40) Utils.showElement(Utils.getElement('behavior-item-2'));
+      if (progress > 55) Utils.showElement(Utils.getElement('behavior-item-3'));
+      if (progress > 70) Utils.showElement(Utils.getElement('behavior-item-4'));
+
+      // 顯示興趣標籤
+      if (progress > 50) Utils.showElement(Utils.getElement('interest-tag-1'));
+      if (progress > 60) Utils.showElement(Utils.getElement('interest-tag-2'));
+      if (progress > 70) Utils.showElement(Utils.getElement('interest-tag-3'));
+      if (progress > 80) Utils.showElement(Utils.getElement('interest-tag-4'));
+      
+      // 顯示分析框
+      if (progress > 90) {
+        Utils.showElement(Utils.getElement('analysis-box'));
+      }
       break;
   }
 }
