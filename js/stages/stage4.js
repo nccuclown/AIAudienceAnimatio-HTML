@@ -77,21 +77,13 @@ export function handleStepStart(stepIndex) {
       });
       break;
 
-    case 1: // 深度匹配
-      // 顯示匹配波紋
-      Utils.showElement(Utils.getElement('match-ripple'));
-      Utils.showElement(Utils.getElement('match-ripple-2'));
-
-      // 匹配條件已被移除，無需顯示
-      break;
-
-    case 2: // 受眾細分
+    case 1: // 受眾細分
       // 顯示細分框
       Utils.showElement(Utils.getElement('match-segment-box'));
       Utils.getElement('match-segment-box').style.left = '50%';
       break;
 
-    case 3: // 匹配結果優化
+    case 2: // 匹配結果優化
       // 顯示匹配結果
       Utils.showElement(Utils.getElement('match-result'));
       Utils.getElement('match-result').style.left = '70%';
@@ -108,7 +100,7 @@ export function handleStepStart(stepIndex) {
 // 處理進度更新
 export function handleProgress(stepIndex, progress) {
   switch(stepIndex) {
-    case 2: // 受眾細分
+    case 1: // 受眾細分
       // 更新偏好匹配進度
       const preferenceProgress = Math.min(Math.floor(progress * 2), 100);
       Utils.setProgressBar(Utils.getElement('preference-bar'), preferenceProgress);
@@ -125,7 +117,7 @@ export function handleProgress(stepIndex, progress) {
       Utils.updateText(Utils.getElement('behavior-percentage'), `${behaviorProgress}%`);
       break;
 
-    case 3: // 匹配結果優化
+    case 2: // 匹配結果優化
       // 顯示次要受眾
       if (progress > 75) {
         Utils.showElement(Utils.getElement('secondary-audience'));
