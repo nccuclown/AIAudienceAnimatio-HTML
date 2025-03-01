@@ -1,0 +1,292 @@
+/* 第五階段 - 分析報告 */
+.report-container {
+  position: relative;
+  width: 320px;
+  margin: 0 auto;
+  background-color: rgba(10, 10, 16, 0.95);
+  border-radius: 12px;
+  padding: 18px;
+  color: white;
+  box-shadow: 0 0 25px rgba(255, 184, 0, 0.6);
+  border: 1px solid rgba(255, 184, 0, 0.4);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.report-container.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.report-title {
+  color: #ffbb00;
+  font-size: 1.3rem;
+  text-shadow: 0 0 5px rgba(255, 184, 0, 0.5);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.report-subtitle {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: white;
+  text-align: center;
+}
+
+.report-section {
+  margin-bottom: 15px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.report-section.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffbb00;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 184, 0, 0.3);
+  padding-bottom: 5px;
+}
+
+.gender-chart {
+  margin-bottom: 15px;
+}
+
+.chart-label {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 6px;
+}
+
+.gender-bar {
+  display: flex;
+  height: 18px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.male-bar, .female-bar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: white;
+  font-weight: bold;
+  width: 0;
+  transition: width 1s ease;
+}
+
+.male-bar.active {
+  width: 62%;
+}
+
+.male-bar {
+  background-color: #26c6da;
+}
+
+.female-bar.active {
+  width: 38%;
+}
+
+.female-bar {
+  background-color: #ff5500;
+}
+
+.gender-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 5px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.gender-labels.active {
+  opacity: 1;
+}
+
+.age-chart {
+  height: 100px;
+  margin-bottom: 15px;
+}
+
+.age-bars {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  height: 80px;
+  align-items: flex-end;
+}
+
+.age-bar-container {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.age-bar {
+  background-color: #ffbb00;
+  border-radius: 3px 3px 0 0;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 20px;
+  height: 0;
+  transition: height 1s ease;
+}
+
+.age-bar-1.active { height: 15%; }
+.age-bar-2.active { height: 45%; }
+.age-bar-3.active { height: 30%; }
+.age-bar-4.active { height: 10%; }
+
+.age-label {
+  font-size: 0.8rem;
+  color: #d1d5db;
+  margin-top: 5px;
+}
+
+.behavior-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  padding: 5px;
+}
+
+.behavior-label {
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.behavior-value {
+  font-size: 1.1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.behavior-item {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.behavior-item.active {
+  opacity: 1;
+}
+
+.interest-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+.interest-tag {
+  background-color: rgba(255, 184, 0, 0.15);
+  color: #ffbb00;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 184, 0, 0.3);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.interest-tag.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.analysis-box {
+  padding: 12px;
+  background-color: rgba(255, 184, 0, 0.1);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #d1d5db;
+  border: 1px solid rgba(255, 184, 0, 0.2);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.analysis-box.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.analysis-title {
+  color: #ffbb00;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.marketing-suggestions {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.marketing-suggestions.active {
+  opacity: 1;
+}
+
+.marketing-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #26c6da;
+  margin-bottom: 8px;
+}
+
+.suggestion-list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 0.8rem;
+}
+
+.suggestion-item {
+  margin-bottom: 5px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.suggestion-item.active {
+  opacity: 1;
+}
+
+.report-glow {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 30px;
+  height: 30px;
+  background-color: #ffbb00;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.report-glow.active {
+  opacity: 1;
+  animation: pulse 1.5s infinite;
+}

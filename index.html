@@ -1,13 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>React + TypeScript + Replit</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/index.jsx"></script>
-  </body>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Audience 智能受眾引擎</title>
+  <!-- CSS 文件 -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/stages/stage1.css">
+  <link rel="stylesheet" href="css/stages/stage2.css">
+  <link rel="stylesheet" href="css/stages/stage3.css">
+  <link rel="stylesheet" href="css/stages/stage4.css">
+  <link rel="stylesheet" href="css/stages/stage5.css">
+</head>
+<body>
+  <!-- 背景 -->
+  <div class="background"></div>
+
+  <!-- 背景粒子 -->
+  <div class="background-particles">
+    <div class="bg-particle" style="width: 4px; height: 4px; background-color: #ffbb00; top: 15%; left: 10%; animation-delay: 0.2s;"></div>
+    <div class="bg-particle" style="width: 3px; height: 3px; background-color: #ff8a00; top: 25%; left: 30%; animation-delay: 0.5s;"></div>
+    <div class="bg-particle" style="width: 5px; height: 5px; background-color: #26c6da; top: 70%; left: 80%; animation-delay: 1s;"></div>
+    <div class="bg-particle" style="width: 2px; height: 2px; background-color: #ff5500; top: 40%; left: 60%; animation-delay: 0.7s;"></div>
+    <div class="bg-particle" style="width: 4px; height: 4px; background-color: #26c6da; top: 85%; left: 25%; animation-delay: 0.3s;"></div>
+    <div class="bg-particle" style="width: 3px; height: 3px; background-color: #ffbb00; top: 55%; left: 45%; animation-delay: 0.9s;"></div>
+    <div class="bg-particle" style="width: 5px; height: 5px; background-color: #ff8a00; top: 20%; left: 75%; animation-delay: 0.1s;"></div>
+    <div class="bg-particle" style="width: 4px; height: 4px; background-color: #ff5500; top: 65%; left: 15%; animation-delay: 0.6s;"></div>
+    <div class="bg-particle" style="width: 3px; height: 3px; background-color: #26c6da; top: 30%; left: 90%; animation-delay: 0.4s;"></div>
+    <div class="bg-particle" style="width: 2px; height: 2px; background-color: #ffbb00; top: 80%; left: 55%; animation-delay: 0.8s;"></div>
+  </div>
+
+  <!-- 主容器 -->
+  <div class="container">
+    <!-- 標題部分 -->
+    <header class="header">
+      <h1 class="title">AI Audience 智能受眾引擎</h1>
+      <p class="subtitle">數據驅動的精準受眾分析解決方案</p>
+    </header>
+
+    <!-- 進度指示器 - 頁籤 -->
+    <div class="progress-indicator" id="tab-container">
+      <!-- 頁籤由 JavaScript 動態生成 -->
+    </div>
+
+    <!-- 步驟進度條 -->
+    <div class="step-progress-container" id="step-progress-container">
+      <div class="step-info">
+        <span class="step-name" id="current-step-name">初始化中...</span>
+        <span class="step-progress-percentage" id="step-progress-percentage">0%</span>
+      </div>
+      <div class="step-progress-bar">
+        <div class="step-progress-fill" id="step-progress-fill"></div>
+      </div>
+      <div class="step-description" id="step-description">準備 AI Audience 系統資源...</div>
+    </div>
+
+    <!-- 階段內容容器 -->
+    <div class="stages-container" id="stages-container">
+      <!-- 階段內容由 JavaScript 動態生成 -->
+    </div>
+
+    <!-- 轉場覆蓋層 -->
+    <div class="transition-overlay" id="transition-overlay">
+      <div class="transition-message" id="transition-message">載入中...</div>
+    </div>
+  </div>
+
+  <!-- JavaScript 模組載入 -->
+  <script type="module" src="js/core.js"></script>
+</body>
 </html>

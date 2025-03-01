@@ -1,0 +1,172 @@
+/* 第二階段 - RAG知識庫 */
+.knowledge-core {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffbb00, #ff8a00, #ff5500);
+  box-shadow: 0 0 30px #ffbb00;
+  animation: pulse 3s infinite alternate;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.knowledge-core.active {
+  opacity: 1;
+}
+
+.core-ring {
+  position: absolute;
+  inset: -20px;
+  border: 2px solid #ffbb00;
+  border-radius: 50%;
+  opacity: 0;
+  animation: rotate 10s linear infinite;
+  transition: opacity 1s ease;
+}
+
+.core-ring.active {
+  opacity: 0.5;
+}
+
+.core-ring:nth-child(2) {
+  inset: -35px;
+  border: 1px solid #26c6da;
+  animation-direction: reverse;
+  animation-duration: 15s;
+}
+
+.core-ring:nth-child(2).active {
+  opacity: 0.3;
+}
+
+.knowledge-point {
+  position: absolute;
+  padding: 8px 12px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.knowledge-point.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.knowledge-point:nth-child(3) {
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  border: 1px solid #ffbb00;
+}
+
+.knowledge-point:nth-child(3).active {
+  transform: translateX(-50%) translateY(0);
+}
+
+.knowledge-point:nth-child(4) {
+  top: 50%;
+  right: 5%;
+  border: 1px solid #ff8a00;
+}
+
+.knowledge-point:nth-child(5) {
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  border: 1px solid #26c6da;
+}
+
+.knowledge-point:nth-child(5).active {
+  transform: translateX(-50%) translateY(0);
+}
+
+.knowledge-point:nth-child(6) {
+  top: 50%;
+  left: 5%;
+  border: 1px solid #ff5500;
+}
+
+.doc-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #ffbb00;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.doc-particle.active {
+  opacity: 1;
+}
+
+.rag-label {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 1px solid #ffbb00;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  color: #ffbb00;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.rag-label.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* 知识库优化指示器 */
+.optimization-box {
+  position: absolute;
+  bottom: 15%;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid #ffbb00;
+  color: white;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.optimization-box.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.optimization-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ffbb00;
+  margin-bottom: 10px;
+}
+
+.optimization-item {
+  font-size: 0.8rem;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.optimization-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.optimization-status {
+  transition: all 0.3s ease;
+}

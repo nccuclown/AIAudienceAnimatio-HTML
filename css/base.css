@@ -1,0 +1,272 @@
+/* 基本樣式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', 'Noto Sans TC', sans-serif;
+}
+
+body {
+  background-color: #0a0a10;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* 視覺風格 */
+.background {
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle at 50% 50%, #101020 0%, #0a0a10 70%);
+  z-index: -10;
+}
+
+/* 主容器 */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+/* 標題部分 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  border-bottom: 1px solid #ffbb00;
+}
+
+.title {
+  font-size: 1.8rem;
+  color: #ffbb00;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(255, 187, 0, 0.5);
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #ff8a00;
+  opacity: 0.9;
+}
+
+/* 進度指示器 */
+.progress-indicator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.stage-indicator {
+  padding: 10px 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: 1px solid #ffbb00;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.stage-indicator:hover {
+  background-color: rgba(255, 187, 0, 0.1);
+  box-shadow: 0 0 5px rgba(255, 187, 0, 0.3);
+}
+
+.stage-indicator.active {
+  background-color: rgba(255, 187, 0, 0.2);
+  color: #ffbb00;
+  box-shadow: 0 0 10px rgba(255, 187, 0, 0.5);
+}
+
+/* 步驟進度條 */
+.step-progress-container {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(255, 187, 0, 0.3);
+}
+
+.step-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.step-name {
+  color: #ffbb00;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.step-progress-percentage {
+  color: #d1d5db;
+  font-size: 0.9rem;
+}
+
+.step-progress-bar {
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.step-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, #ffbb00, #ff8a00);
+  transition: width 0.3s ease;
+}
+
+.step-description {
+  font-size: 0.8rem;
+  color: #d1d5db;
+  line-height: 1.4;
+}
+
+/* 階段內容 */
+.stages-container {
+  position: relative;
+  width: 100%;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.stage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 187, 0, 0.3);
+}
+
+.stage.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.stage-title {
+  text-align: center;
+  color: #ffbb00;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  text-shadow: 0 0 8px rgba(255, 187, 0, 0.5);
+}
+
+.stage-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.stage-description {
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 187, 0, 0.2);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* 轉場覆蓋層 */
+.transition-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+
+.transition-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.transition-message {
+  color: #ffbb00;
+  font-size: 1.5rem;
+  text-shadow: 0 0 10px rgba(255, 187, 0, 0.5);
+  text-align: center;
+  max-width: 80%;
+  animation: pulse 1.5s infinite;
+}
+
+/* 背景粒子 */
+.background-particles {
+  position: fixed;
+  inset: 0;
+  z-index: -5;
+  pointer-events: none;
+}
+
+.bg-particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.2;
+  filter: blur(1px);
+  animation: float 8s infinite ease-in-out;
+}
+
+/* 數據顯示元素 */
+.data-counter {
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ffbb00;
+  box-shadow: 0 0 15px rgba(255, 187, 0, 0.3);
+}
+
+.data-counter-value {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffbb00;
+  margin-bottom: 5px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  background-color: rgba(10, 10, 16, 0.8);
+  color: white;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  border: 1px solid;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tag.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 通用元素 */
+.info-card {
+  background-color: rgba(0, 0, 0, 0.8);
