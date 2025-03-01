@@ -58,12 +58,14 @@ export function handleStepStart(stepIndex) {
       const reportContainer = Utils.getElement('report-container');
       Utils.showElement(reportContainer);
       
-      // 確保容器在視窗中央
+      // 確保容器適應中央區域
       setTimeout(() => {
-        const containerHeight = reportContainer.offsetHeight;
-        const windowHeight = window.innerHeight;
-        if (containerHeight > windowHeight - 200) {
-          reportContainer.style.height = (windowHeight - 200) + 'px';
+        const mainArea = document.querySelector('.stage-container');
+        if (mainArea) {
+          const mainHeight = mainArea.offsetHeight;
+          const mainWidth = mainArea.offsetWidth;
+          reportContainer.style.height = (mainHeight * 0.8) + 'px';
+          reportContainer.style.width = (mainWidth * 0.9) + 'px';
         }
       }, 100);
       break;
