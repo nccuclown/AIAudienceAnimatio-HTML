@@ -128,11 +128,6 @@ const Config = {
         description: "分析客戶產品特性和需求"
       },
       { 
-        name: "深度匹配", 
-        duration: 3000,
-        description: "AI 演算法執行深度受眾匹配"
-      },
-      { 
         name: "受眾細分", 
         duration: 3000,
         description: "依據匹配結果進行受眾細分"
