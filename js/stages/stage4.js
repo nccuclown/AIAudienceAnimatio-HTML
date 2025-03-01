@@ -17,6 +17,8 @@ export function resetElements() {
   Utils.hideElement(Utils.getElement('match-result'));
   Utils.hideAllElements('trait-tag', 4);
   Utils.hideElement(Utils.getElement('secondary-audience'));
+  Utils.hideElement(Utils.getElement('match-ripple'));
+  Utils.hideElement(Utils.getElement('match-ripple-2'));
 }
 
 // 處理步驟開始
@@ -36,12 +38,15 @@ export function handleStepStart(stepIndex) {
       Utils.showElementWithDelay(Utils.getElement('audience-tag-2'), 1500);
       Utils.showElementWithDelay(Utils.getElement('audience-tag-3'), 1800);
 
-      // 顯示粒子
+      // 顯示粒子 (假設存在)
       document.querySelectorAll('.sphere-particle').forEach((el, index) => {
         setTimeout(() => {
           Utils.showElement(el);
         }, index * 100);
       });
+      // 顯示匹配波紋
+      Utils.showElement(Utils.getElement('match-ripple'));
+      Utils.showElement(Utils.getElement('match-ripple-2'));
       break;
 
     case 1: // 受眾細分 (原本的第3步，現在變成第2步)
