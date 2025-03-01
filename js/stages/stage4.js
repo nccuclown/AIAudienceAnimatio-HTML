@@ -50,19 +50,6 @@ export function resetElements() {
   document.querySelectorAll('.sphere-particle').forEach(el => {
     Utils.hideElement(el);
   });
-
-  //重置AI匹配視覺化元素
-  Utils.hideElement(Utils.getElement('ai-matching-visualization'));
-  Utils.hideElement(Utils.getElement('match-percentage'));
-  ['algorithm-node-1', 'algorithm-node-2', 'algorithm-node-3', 'algorithm-node-4'].forEach(nodeId => {
-    Utils.hideElement(Utils.getElement(nodeId));
-  });
-  ['data-flow-1', 'data-flow-2', 'data-flow-3'].forEach(flowId => {
-    Utils.hideElement(Utils.getElement(flowId));
-  });
-  ['data-point-1', 'data-point-2', 'data-point-3', 'data-point-4', 'data-point-5'].forEach(pointId => {
-    Utils.hideElement(Utils.getElement(pointId));
-  });
 }
 
 // 處理步驟開始
@@ -91,78 +78,11 @@ export function handleStepStart(stepIndex) {
       break;
 
     case 1: // 深度匹配
-      // 顯示演算法視覺化
-      Utils.showElement(Utils.getElement('ai-matching-visualization'));
-      Utils.showElement(Utils.getElement('match-percentage'));
+      // 顯示匹配波紋
+      Utils.showElement(Utils.getElement('match-ripple'));
+      Utils.showElement(Utils.getElement('match-ripple-2'));
 
-      // 依次顯示演算法節點
-      setTimeout(() => {
-        Utils.showElement(Utils.getElement('algorithm-node-1'));
-        Utils.getElement('algorithm-node-1').classList.add('processing');
-      }, 500);
-
-      setTimeout(() => {
-        Utils.showElement(Utils.getElement('algorithm-node-2'));
-      }, 1000);
-
-      setTimeout(() => {
-        Utils.showElement(Utils.getElement('algorithm-node-3'));
-      }, 1500);
-
-      setTimeout(() => {
-        Utils.showElement(Utils.getElement('algorithm-node-4'));
-      }, 2000);
-
-      // 顯示數據流動線
-      setTimeout(() => {
-        const flow1 = Utils.getElement('data-flow-1');
-        Utils.showElement(flow1);
-        flow1.classList.add('active');
-
-        // 顯示資料點
-        setTimeout(() => {
-          Utils.showElement(Utils.getElement('data-point-1'));
-          Utils.showElement(Utils.getElement('data-point-2'));
-        }, 300);
-      }, 1200);
-
-      setTimeout(() => {
-        Utils.getElement('algorithm-node-1').classList.remove('processing');
-        Utils.getElement('algorithm-node-2').classList.add('processing');
-
-        const flow2 = Utils.getElement('data-flow-2');
-        Utils.showElement(flow2);
-        flow2.classList.add('active');
-
-        // 顯示更多資料點
-        setTimeout(() => {
-          Utils.showElement(Utils.getElement('data-point-3'));
-        }, 300);
-      }, 1800);
-
-      setTimeout(() => {
-        Utils.getElement('algorithm-node-2').classList.remove('processing');
-        Utils.getElement('algorithm-node-3').classList.add('processing');
-
-        const flow3 = Utils.getElement('data-flow-3');
-        Utils.showElement(flow3);
-        flow3.classList.add('active');
-
-        // 顯示更多資料點
-        setTimeout(() => {
-          Utils.showElement(Utils.getElement('data-point-4'));
-          Utils.showElement(Utils.getElement('data-point-5'));
-        }, 300);
-      }, 2400);
-
-      setTimeout(() => {
-        Utils.getElement('algorithm-node-3').classList.remove('processing');
-        Utils.getElement('algorithm-node-4').classList.add('processing');
-
-        // 顯示匹配波紋表示完成
-        Utils.showElement(Utils.getElement('match-ripple'));
-        Utils.showElement(Utils.getElement('match-ripple-2'));
-      }, 2800);
+      // 匹配條件已被移除，無需顯示
       break;
 
     case 2: // 受眾細分
@@ -188,35 +108,6 @@ export function handleStepStart(stepIndex) {
 // 處理進度更新
 export function handleProgress(stepIndex, progress) {
   switch(stepIndex) {
-    case 1: // 深度匹配
-      // 更新匹配百分比
-      const matchPercent = Math.min(Math.floor(progress * 100), 100);
-      Utils.updateText(Utils.getElement('match-percent-value'), matchPercent.toString());
-
-      // 依據進度控制演算法節點的激活狀態
-      if (progress < 0.3) {
-        Utils.getElement('algorithm-node-1').classList.add('processing');
-        Utils.getElement('algorithm-node-2').classList.remove('processing');
-        Utils.getElement('algorithm-node-3').classList.remove('processing');
-        Utils.getElement('algorithm-node-4').classList.remove('processing');
-      } else if (progress < 0.6) {
-        Utils.getElement('algorithm-node-1').classList.remove('processing');
-        Utils.getElement('algorithm-node-2').classList.add('processing');
-        Utils.getElement('algorithm-node-3').classList.remove('processing');
-        Utils.getElement('algorithm-node-4').classList.remove('processing');
-      } else if (progress < 0.9) {
-        Utils.getElement('algorithm-node-1').classList.remove('processing');
-        Utils.getElement('algorithm-node-2').classList.remove('processing');
-        Utils.getElement('algorithm-node-3').classList.add('processing');
-        Utils.getElement('algorithm-node-4').classList.remove('processing');
-      } else {
-        Utils.getElement('algorithm-node-1').classList.remove('processing');
-        Utils.getElement('algorithm-node-2').classList.remove('processing');
-        Utils.getElement('algorithm-node-3').classList.remove('processing');
-        Utils.getElement('algorithm-node-4').classList.add('processing');
-      }
-      break;
-
     case 2: // 受眾細分
       // 更新偏好匹配進度
       const preferenceProgress = Math.min(Math.floor(progress * 2), 100);
