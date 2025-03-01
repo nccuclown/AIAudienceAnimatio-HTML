@@ -491,115 +491,14 @@ const Config = {
       <div class="report-container" id="report-container">
         <h3 class="report-title">受眾分析報告</h3>
         <div class="report-subtitle">科技迷 - 高消費力</div>
-        
+
         <div class="report-content">
           <div class="main-sections">
             <div class="left-column">
               <!-- 人口統計 -->
               <div class="report-section" id="demographics-section">
-          <div class="section-title">人口統計</div>
-
-          <!-- 性別分布 -->
-          <div class="gender-chart">
-            <div class="chart-label">性別分布:</div>
-            <div class="gender-bar">
-              <div class="male-bar" id="male-bar">62%</div>
-              <div class="female-bar" id="female-bar">38%</div>
-            </div>
-            <div class="gender-labels" id="gender-labels">
-              <span>男性</span>
-              <span>女性</span>
-            </div>
-          </div>
-
-          <!-- 年齡分布 -->
-          <div class="age-chart">
-            <div class="chart-label">年齡分布:</div>
-            <div class="age-bars">
-              <div class="age-bar-container">
-                <div class="age-bar age-bar-1" id="age-bar-1"></div>
-                <div class="age-label">18-24</div>
-              </div>
-              <div class="age-bar-container">
-                <div class="age-bar age-bar-2" id="age-bar-2"></div>
-                <div class="age-label">25-34</div>
-              </div>
-              <div class="age-bar-container">
-                <div class="age-bar age-bar-3" id="age-bar-3"></div>
-                <div class="age-label">35-44</div>
-              </div>
-              <div class="age-bar-container">
-                <div class="age-bar age-bar-4" id="age-bar-4"></div>
-                <div class="age-label">45+</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 消費行為 -->
-        <div class="report-section" id="behavior-section">
-          <div class="section-title">消費行為</div>
-
-          <div class="behavior-grid">
-            <div class="behavior-item" id="behavior-item-1">
-              <div class="behavior-label">平均消費:</div>
-              <div class="behavior-value">$3,500</div>
-            </div>
-            <div class="behavior-item" id="behavior-item-2">
-              <div class="behavior-label">購買頻率:</div>
-              <div class="behavior-value">每月1-2次</div>
-            </div>
-            <div class="behavior-item" id="behavior-item-3">
-              <div class="behavior-label">品牌忠誠度:</div>
-              <div class="behavior-value">中偏高</div>
-            </div>
-            <div class="behavior-item" id="behavior-item-4">
-              <div class="behavior-label">研究習慣:</div>
-              <div class="behavior-value">深度研究型</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 興趣標籤 -->
-        <div class="report-section" id="interest-section">
-          <div class="section-title">興趣標籤</div>
-
-          <div class="interest-tags">
-            <span class="interest-tag" id="interest-tag-1">科技</span>
-            <span class="interest-tag" id="interest-tag-2">攝影</span>
-            <span class="interest-tag" id="interest-tag-3">科技新聞</span>
-            <span class="interest-tag" id="interest-tag-4">早期採用者</span>
-          </div>
-
-          <!-- 匹配分析 -->
-          <div class="analysis-box" id="analysis-box">
-            <div class="analysis-title">匹配分析:</div>
-            <div>此受眾群體對新科技產品有高度興趣，購買力強，消費決策速度快。對品質與創新有高度追求，非常適合高端智能手機的推廣活動。預估轉化率提升38%。</div>
-          </div>
-        </div>
-
-        <!-- 行銷建議 -->
-        <div class="marketing-suggestions" id="marketing-suggestions">
-          <div class="marketing-title">行銷建議</div>
-          <ul class="suggestion-list">
-            <li class="suggestion-item" id="suggestion-item-1">強調產品的創新技術和AI能力</li>
-            <li class="suggestion-item" id="suggestion-item-2">提供專業使用案例和詳細規格</li>
-            <li class="suggestion-item" id="suggestion-item-3">使用科技影響者進行產品推廣</li>
-          </ul>
-        </div>
-
-        <!-- 發光效果 -->
-        <div class="report-glow" id="report-glow"></div>
-      </div>
-    `
-  }
-};
-
-// 改为默认导出
-export default Config;
-section" id="demographics-section">
                 <div class="section-title">人口統計</div>
-                
+
                 <div class="gender-chart">
                   <div class="chart-label">性別分布:</div>
                   <div class="gender-bar">
@@ -611,7 +510,7 @@ section" id="demographics-section">
                     <div>女性</div>
                   </div>
                 </div>
-                
+
                 <div class="age-chart">
                   <div class="chart-label">年齡分布:</div>
                   <div class="age-bars">
@@ -635,7 +534,7 @@ section" id="demographics-section">
                 </div>
               </div>
             </div>
-            
+
             <div class="right-column">
               <!-- 消費行為 -->
               <div class="report-section" id="behavior-section">
@@ -659,7 +558,7 @@ section" id="demographics-section">
                   </div>
                 </div>
               </div>
-              
+
               <!-- 興趣標籤 -->
               <div class="report-section" id="interest-section">
                 <div class="section-title">興趣標籤</div>
@@ -669,13 +568,13 @@ section" id="demographics-section">
                   <div class="interest-tag" id="interest-tag-3">科技新聞</div>
                   <div class="interest-tag" id="interest-tag-4">早期採用者</div>
                 </div>
-                
+
                 <div class="analysis-box" id="analysis-box">
                   <div class="analysis-title">匹配分析</div>
                   <div>此受眾群體對新科技產品有強烈興趣，願意為高端功能支付更多。使用自訂的AI技術行銷方案可提高轉化率預估38%。</div>
                 </div>
               </div>
-              
+
               <!-- 行銷建議 -->
               <div class="marketing-suggestions" id="marketing-suggestions">
                 <div class="marketing-title">行銷建議</div>
@@ -688,6 +587,12 @@ section" id="demographics-section">
             </div>
           </div>
         </div>
-        
+
         <div class="report-glow" id="report-glow"></div>
       </div>
+    `
+  }
+};
+
+// 改为默认导出
+export default Config;
