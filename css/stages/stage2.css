@@ -1,383 +1,253 @@
-
-/* 第二階段 - RAG知識庫 */
+/* 第二階段 - RAG知識庫建立 */
 .rag-container {
   position: relative;
-  width: 90%;
+  width: 100%;
   height: 100%;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-/* 頂部RAG標題 */
-.rag-header {
-  text-align: center;
-  margin-bottom: 20px;
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.rag-header.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.rag-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #ffbb00;
-  margin-bottom: 5px;
-}
-
-.rag-subtitle {
-  font-size: 0.9rem;
-  color: #e0e0e0;
-}
-
-/* 中央RAG流程區域 */
-.rag-workflow {
-  display: flex;
-  justify-content: space-between;
-  width: 85%;
-  margin: 20px 0;
-  position: relative;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.rag-workflow.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* RAG三大步驟框 */
-.rag-step-box {
-  width: 28%;
-  border-radius: 8px;
-  background-color: rgba(0, 0, 0, 0.7);
-  border: 1px solid;
-  padding: 15px;
-  height: 180px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.rag-step-box.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.retrieval-box {
-  border-color: #26c6da;
-  transition-delay: 0.2s;
-}
-
-.augmentation-box {
-  border-color: #ffbb00;
-  transition-delay: 0.4s;
-}
-
-.generation-box {
-  border-color: #4caf50;
-  transition-delay: 0.6s;
-}
-
-.rag-step-title {
-  font-weight: bold;
-  font-size: 1.1rem;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.retrieval-box .rag-step-title {
-  color: #26c6da;
-}
-
-.augmentation-box .rag-step-title {
-  color: #ffbb00;
-}
-
-.generation-box .rag-step-title {
-  color: #4caf50;
-}
-
-.rag-step-icon {
-  width: 40px;
-  height: 40px;
-  margin: 0 auto 10px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  align-items: center;
 }
 
-.retrieval-box .rag-step-icon {
+/* RAG 標籤 */
+.rag-label {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.9);
+  padding: 10px 15px;
   background-color: rgba(38, 198, 218, 0.2);
+  border: 1px solid #26c6da;
+  border-radius: 8px;
   color: #26c6da;
-}
-
-.augmentation-box .rag-step-icon {
-  background-color: rgba(255, 187, 0, 0.2);
-  color: #ffbb00;
-}
-
-.generation-box .rag-step-icon {
-  background-color: rgba(76, 175, 80, 0.2);
-  color: #4caf50;
-}
-
-.rag-step-description {
-  font-size: 0.85rem;
+  font-weight: bold;
+  font-size: 1.3rem;
   text-align: center;
-  line-height: 1.4;
-  margin-bottom: 10px;
-}
-
-/* 連接箭頭 */
-.rag-workflow-arrow {
-  position: absolute;
-  top: 40%;
-  width: 15%;
-  height: 2px;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.3));
+  box-shadow: 0 0 15px rgba(38, 198, 218, 0.5);
   opacity: 0;
-  transition: opacity 0.8s ease;
+  z-index: 10;
+  transition: opacity 0.8s ease, transform 0.5s ease;
 }
 
-.arrow-1 {
-  left: 28%;
-  transition-delay: 0.7s;
-}
-
-.arrow-2 {
-  left: 57%;
-  transition-delay: 0.9s;
-}
-
-.rag-workflow-arrow.active {
+.rag-label.active {
   opacity: 1;
-  animation: pulse-line 2s infinite alternate;
-}
-
-.rag-workflow-arrow::after {
-  content: '';
-  position: absolute;
-  right: -5px;
-  top: -4px;
-  width: 0;
-  height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 8px solid rgba(255, 255, 255, 0.8);
+  transform: translateX(-50%) scale(1);
 }
 
 /* 知識庫核心 */
 .knowledge-core {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
   width: 120px;
   height: 120px;
-  margin: 20px auto;
+  background: radial-gradient(circle, rgba(38, 198, 218, 0.8) 0%, rgba(38, 198, 218, 0.2) 70%);
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #ffbb00, #ff8a00, #ff5500);
-  box-shadow: 0 0 30px #ffbb00;
   opacity: 0;
-  transition: opacity 1s ease, transform 0.8s ease;
-  transform: scale(0.8);
+  transition: opacity 1s ease, transform 0.5s ease;
+  box-shadow: 0 0 30px rgba(38, 198, 218, 0.4);
 }
 
 .knowledge-core.active {
   opacity: 1;
-  transform: scale(1);
-  animation: pulse 3s infinite alternate;
+  transform: translate(-50%, -50%) scale(1);
+  animation: corePulse 4s infinite ease-in-out;
+}
+
+.knowledge-core.enhanced-pulse {
+  animation: corePulse 2s infinite ease-in-out;
+  box-shadow: 0 0 50px rgba(38, 198, 218, 0.8);
 }
 
 /* 核心環 */
 .core-ring {
   position: absolute;
-  inset: -15px;
-  border: 2px solid #ffbb00;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 180px;
+  height: 180px;
+  border: 2px dashed rgba(38, 198, 218, 0.7);
   border-radius: 50%;
   opacity: 0;
-  transition: opacity 1s ease;
+  transition: opacity 0.5s ease;
 }
 
 .core-ring.active {
-  opacity: 0.5;
+  opacity: 1;
   animation: rotate 20s linear infinite;
 }
 
-.core-ring:nth-child(2) {
-  inset: -25px;
-  border: 1px solid #26c6da;
-  animation-direction: reverse;
-  animation-duration: 25s;
+/* 知識點 */
+.knowledge-point {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: rgba(38, 198, 218, 0.8);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  box-shadow: 0 0 8px rgba(38, 198, 218, 0.6);
+}
+
+.knowledge-point.active {
+  opacity: 1;
+  transform: scale(1);
+  animation: pulse 2s infinite alternate;
 }
 
 /* 文檔粒子 */
 .doc-particle {
   position: absolute;
-  width: 15px;
-  height: 15px;
-  transform: rotate(45deg);
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 5px;
+  height: 5px;
+  background-color: rgba(255, 184, 0, 0.8);
+  border-radius: 50%;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.3s ease;
 }
 
 .doc-particle.active {
   opacity: 1;
-  animation: docFloat 8s infinite ease-in-out;
 }
 
-/* 文檔粒子飄動 */
-@keyframes docFloat {
-  0%, 100% { transform: rotate(45deg) translate(0, 0); }
-  25% { transform: rotate(45deg) translate(10px, 5px); }
-  50% { transform: rotate(45deg) translate(0, 10px); }
-  75% { transform: rotate(45deg) translate(-5px, 5px); }
-}
-
-/* 文檔粒子流向核心動畫 */
-.doc-particle.flowing {
-  animation: flowToCore 2s forwards;
-}
-
-@keyframes flowToCore {
-  0% {
-    transform: rotate(45deg) scale(1);
-    opacity: 1;
-  }
-  70% {
-    opacity: 0.8;
-    transform: rotate(0) scale(0.8);
-  }
-  100% {
-    opacity: 0;
-    transform: rotate(0) scale(0.5) translate(var(--flow-x), var(--flow-y));
-  }
-}
-
-/* RAG數據統計 */
-.rag-stats {
+/* 知識庫優化框 */
+.optimization-box {
   position: absolute;
-  bottom: 8%;
-  right: 5%;
-  padding: 12px;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  width: 300px;
+  padding: 15px;
   background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 8px;
   border: 1px solid #26c6da;
+  border-radius: 8px;
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  min-width: 200px;
+  transition: opacity 0.8s ease, transform 0.5s ease;
 }
 
-.rag-stats.active {
+.optimization-box.active {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
-.rag-stats-title {
-  font-weight: bold;
-  color: #26c6da;
+.optimization-title {
   margin-bottom: 10px;
-  font-size: 0.9rem;
-  display: flex;
-  align-items: center;
+  color: #26c6da;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: center;
 }
 
-.rag-stat-item {
-  margin: 5px 0;
-  font-size: 0.8rem;
+.optimization-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.optimization-item {
   display: flex;
   justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(38, 198, 218, 0.3);
   opacity: 0;
   transform: translateX(-10px);
   transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.rag-stat-item.active {
+.optimization-item.active {
   opacity: 1;
   transform: translateX(0);
 }
 
-.rag-stat-value {
-  font-weight: bold;
+.optimization-name {
+  color: white;
+}
+
+.optimization-status {
   color: #ffbb00;
+  font-size: 0.85rem;
 }
 
-/* 知識點標籤 */
-.knowledge-tag {
+/* 預先配置知識點位置 */
+#knowledge-point-1 {
+  top: calc(50% - 100px);
+  left: calc(50% + 0px);
+}
+
+#knowledge-point-2 {
+  top: calc(50% - 70px);
+  left: calc(50% + 70px);
+}
+
+#knowledge-point-3 {
+  top: calc(50% + 0px);
+  left: calc(50% + 100px);
+}
+
+#knowledge-point-4 {
+  top: calc(50% + 70px);
+  left: calc(50% + 70px);
+}
+
+#knowledge-point-5 {
+  top: calc(50% + 100px);
+  left: calc(50% + 0px);
+}
+
+#knowledge-point-6 {
+  top: calc(50% + 70px);
+  left: calc(50% - 70px);
+}
+
+#knowledge-point-7 {
+  top: calc(50% + 0px);
+  left: calc(50% - 100px);
+}
+
+#knowledge-point-8 {
+  top: calc(50% - 70px);
+  left: calc(50% - 70px);
+}
+
+/* 預先配置文檔粒子位置 */
+.doc-particles-container {
   position: absolute;
-  padding: 5px 8px;
-  background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 15px;
-  font-size: 0.75rem;
-  border: 1px solid #ffbb00;
-  white-space: nowrap;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.knowledge-tag.active {
-  opacity: 1;
-  transform: scale(1);
-  animation: float 4s infinite ease-in-out;
-}
-
-/* 進度優化框 */
-.rag-progress {
-  position: absolute;
-  bottom: 8%;
-  left: 5%;
-  width: 180px;
-  padding: 12px;
-  background-color: rgba(0, 0, 0, 0.7);
-  border-radius: 8px;
-  border: 1px solid #ffbb00;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.rag-progress.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.rag-progress-title {
-  font-weight: bold;
-  color: #ffbb00;
-  margin-bottom: 10px;
-  font-size: 0.9rem;
-}
-
-.rag-progress-item {
-  margin: 8px 0;
-  font-size: 0.8rem;
-}
-
-.progress-bar {
-  height: 4px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
-  margin-top: 3px;
-  overflow: hidden;
-}
-
-.progress-fill {
+  width: 100%;
   height: 100%;
-  background-color: #26c6da;
-  width: 0;
-  transition: width 0.8s ease-out;
+  top: 0;
+  left: 0;
+}
+
+/*Animations -  Incorporating some from original*/
+@keyframes rotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes corePulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 30px rgba(38, 198, 218, 0.4);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 0 40px rgba(38, 198, 218, 0.6);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 30px rgba(38, 198, 218, 0.4);
+  }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }

@@ -243,9 +243,64 @@ const Config = {
 
     // 第二階段視覺區域 - 修改後的版本
     stage2Visual: `
-      <!-- 知識庫核心 -->
-      <div class="knowledge-core" id="knowledge-core">
-        <div class="core-ring" id="core-ring-1"></div>
+      <div class="rag-container">
+        <!-- RAG 標籤 -->
+        <div class="rag-label" id="rag-label">
+          RAG 知識庫技術
+        </div>
+
+        <!-- 知識庫核心 -->
+        <div class="knowledge-core" id="knowledge-core"></div>
+        <div class="core-ring" id="core-ring"></div>
+
+        <!-- 知識點 -->
+        <div class="knowledge-point" id="knowledge-point-1"></div>
+        <div class="knowledge-point" id="knowledge-point-2"></div>
+        <div class="knowledge-point" id="knowledge-point-3"></div>
+        <div class="knowledge-point" id="knowledge-point-4"></div>
+        <div class="knowledge-point" id="knowledge-point-5"></div>
+        <div class="knowledge-point" id="knowledge-point-6"></div>
+        <div class="knowledge-point" id="knowledge-point-7"></div>
+        <div class="knowledge-point" id="knowledge-point-8"></div>
+
+        <!-- 文檔粒子 -->
+        <div class="doc-particles-container">
+          <div class="doc-particle" style="top: 35%; left: 25%;"></div>
+          <div class="doc-particle" style="top: 40%; left: 32%;"></div>
+          <div class="doc-particle" style="top: 45%; left: 28%;"></div>
+          <div class="doc-particle" style="top: 50%; left: 30%;"></div>
+          <div class="doc-particle" style="top: 55%; left: 26%;"></div>
+          
+          <div class="doc-particle" style="top: 30%; left: 65%;"></div>
+          <div class="doc-particle" style="top: 35%; left: 70%;"></div>
+          <div class="doc-particle" style="top: 40%; left: 68%;"></div>
+          <div class="doc-particle" style="top: 45%; left: 72%;"></div>
+          <div class="doc-particle" style="top: 50%; left: 67%;"></div>
+        </div>
+
+        <!-- 知識庫優化框 -->
+        <div class="optimization-box" id="optimization-box">
+          <div class="optimization-title">知識庫優化</div>
+          <div class="optimization-items">
+            <div class="optimization-item" id="optimization-item-1">
+              <div class="optimization-name">知識庫優化</div>
+              <div class="optimization-status">進行中...</div>
+            </div>
+            <div class="optimization-item" id="optimization-item-2">
+              <div class="optimization-name">檢索速度: 優化</div>
+              <div class="optimization-status">進行中...</div>
+            </div>
+            <div class="optimization-item" id="optimization-item-3">
+              <div class="optimization-name">關聯網絡: 建立</div>
+              <div class="optimization-status">進行中...</div>
+            </div>
+            <div class="optimization-item" id="optimization-item-4">
+              <div class="optimization-name">準確度測試: 測試</div>
+              <div class="optimization-status">進行中...</div>
+            </div>
+          </div>
+        </div>
+      </div>-ring-1"></div>
         <div class="core-ring" id="core-ring-2"></div>
       </div>
 

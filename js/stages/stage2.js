@@ -4,6 +4,15 @@ import * as Utils from '../utils.js';
 // 文檔粒子流向核心的計時器
 let docFlowTimer = null;
 
+// 初始化該階段需要的元素
+let knowledgeCore = null;
+let coreRing = null;
+let ragLabel = null;
+let optimizationBox = null;
+let knowledgePoints = [];
+let docParticles = [];
+let optimizationItems = [];
+
 // 初始化第二階段
 export function initialize(container) {
   // 清理之前的內容
@@ -30,13 +39,15 @@ export function initialize(container) {
   ragContainer.appendChild(ragHeader);
 
   // 創建知識庫核心
-  const knowledgeCore = document.createElement('div');
+  knowledgeCore = document.createElement('div');
+  knowledgeCore.id = 'knowledge-core'; //Added ID for easier access
   knowledgeCore.className = 'knowledge-core';
   ragContainer.appendChild(knowledgeCore);
 
   // 添加核心環
   for (let i = 0; i < 3; i++) {
     const coreRing = document.createElement('div');
+    coreRing.id = `core-ring-${i}`; //Added ID for easier access
     coreRing.className = 'core-ring';
     knowledgeCore.appendChild(coreRing);
   }
@@ -128,7 +139,15 @@ export function initialize(container) {
 
   // 創建知識點標籤
   createKnowledgeTags(ragContainer);
+
+  // Added for easier access in other functions
+  ragLabel = document.querySelector('.rag-header');
+  optimizationBox = document.querySelector('.rag-progress');
+  knowledgePoints = document.querySelectorAll('.knowledge-tag');
+  docParticles = document.querySelectorAll('.doc-particle');
+  optimizationItems = document.querySelectorAll('.rag-progress-item');
 }
+
 
 // 創建文檔粒子
 function createDocParticles(container, count) {
@@ -216,129 +235,113 @@ function updateProgress(progressId, value) {
   }
 }
 
-// 分步驟顯示第二階段的所有元素
-export function executeStep(step) {
-  switch (step) {
-    case 0: // 初始化 RAG 架構
-      // 顯示RAG頭部信息
-      setTimeout(() => {
-        Utils.addActiveClass(document.querySelector('.rag-header'));
-      }, 200);
+// 重置元素狀態
+export function resetElements() {
+  // 獲取視覺元素
+  knowledgeCore = document.getElementById('knowledge-core');
+  coreRing = document.querySelectorAll('.core-ring');
+  ragLabel = document.querySelector('.rag-header');
+  optimizationBox = document.querySelector('.rag-progress');
 
-      // 顯示知識庫核心
-      setTimeout(() => {
-        Utils.addActiveClass(document.querySelector('.knowledge-core'));
-      }, 500);
+  // 隱藏所有元素
+  if (knowledgeCore) knowledgeCore.classList.remove('active');
+  coreRing.forEach(ring => ring.classList.remove('active'));
+  if (ragLabel) ragLabel.classList.remove('active');
+  if (optimizationBox) optimizationBox.classList.remove('active');
 
-      // 顯示核心環
-      setTimeout(() => {
-        document.querySelectorAll('.core-ring').forEach((ring, index) => {
-          setTimeout(() => {
-            Utils.addActiveClass(ring);
-          }, 700 + index * 200);
-        });
-      }, 800);
-      break;
+  // 隱藏知識點
+  knowledgePoints = document.querySelectorAll('.knowledge-tag');
+  knowledgePoints.forEach(point => {
+    point.classList.remove('active');
+  });
 
-    case 1: // 整合產業資料
-      // 顯示RAG流程
-      setTimeout(() => {
-        Utils.addActiveClass(document.querySelector('.rag-workflow'));
-      }, 200);
+  // 隱藏文檔粒子
+  docParticles = document.querySelectorAll('.doc-particle');
+  docParticles.forEach(particle => {
+    particle.classList.remove('active', 'flowing'); //Remove flowing class too
+  });
 
-      // 顯示RAG步驟框
-      setTimeout(() => {
-        document.querySelectorAll('.rag-step-box').forEach(box => {
-          Utils.addActiveClass(box);
-        });
-      }, 500);
+  // 隱藏優化項目
+  optimizationItems = document.querySelectorAll('.rag-progress-item');
+  optimizationItems.forEach(item => {
+    if (item.querySelector('.optimization-status')) {
+      item.querySelector('.optimization-status').textContent = '進行中...';
+    }
+    item.classList.remove('active');
+  });
+}
 
-      // 顯示連接箭頭
-      setTimeout(() => {
-        document.querySelectorAll('.rag-workflow-arrow').forEach(arrow => {
-          Utils.addActiveClass(arrow);
-        });
-      }, 1500);
+// 處理步驟開始
+export function handleStepStart(stepIndex) {
+  console.log('RAG步驟開始:', stepIndex);
 
-      // 顯示文檔粒子
-      setTimeout(() => {
-        document.querySelectorAll('.doc-particle').forEach((particle, index) => {
-          setTimeout(() => {
-            Utils.addActiveClass(particle);
-          }, 100 * index);
-        });
+  // 步驟0: 初始化 RAG 架構
+  if (stepIndex === 0) {
+    // 顯示RAG標籤
+    if (ragLabel) {
+      setTimeout(() => ragLabel.classList.add('active'), 100);
+    }
+  }
 
-        // 開始粒子流動
+  // 步驟1: 整合產業資料
+  else if (stepIndex === 1) {
+    // 顯示知識點
+    knowledgePoints.forEach((point, index) => {
+      setTimeout(() => point.classList.add('active'), 200 * index);
+    });
+
+    // 顯示文檔粒子
+    docParticles.forEach((particle, index) => {
+      setTimeout(() => particle.classList.add('active'), 100 + (50 * index));
+    });
+    setTimeout(() => startDocParticleFlow(), 100 + (50 * docParticles.length)); //Start particle flow after all particles are shown
+
+  }
+
+  // 步驟2: 知識索引建立
+  else if (stepIndex === 2) {
+    // 顯示優化框
+    if (optimizationBox) {
+      optimizationBox.classList.add('active');
+    }
+
+    // 顯示優化項目
+    optimizationItems.forEach((item, index) => {
+      setTimeout(() => item.classList.add('active'), 300 * (index + 1));
+    });
+  }
+
+  // 步驟3: 知識優化完成
+  else if (stepIndex === 3) {
+    // 更新優化狀態
+    optimizationItems.forEach((item, index) => {
+      if (item.querySelector('.optimization-status')) {
         setTimeout(() => {
-          startDocParticleFlow();
-        }, 2000);
-      }, 800);
-
-      // 顯示RAG數據統計
-      setTimeout(() => {
-        Utils.addActiveClass(document.querySelector('.rag-stats'));
-
-        // 逐個顯示統計項
-        document.querySelectorAll('.rag-stat-item').forEach((item, index) => {
-          setTimeout(() => {
-            Utils.addActiveClass(item);
-          }, 300 * index);
-        });
-      }, 1200);
-      break;
-
-    case 2: // 知識索引建立
-      // 顯示知識點標籤
-      setTimeout(() => {
-        document.querySelectorAll('.knowledge-tag').forEach((tag, index) => {
-          setTimeout(() => {
-            Utils.addActiveClass(tag);
-          }, 300 * index);
-        });
-      }, 500);
-
-      // 顯示進度優化框
-      setTimeout(() => {
-        Utils.addActiveClass(document.querySelector('.rag-progress'));
-
-        // 逐步填充進度條
-        setTimeout(() => {
-          updateProgress('progress-1', 90);
-        }, 800);
-
-        setTimeout(() => {
-          updateProgress('progress-2', 75);
-        }, 1500);
-
-        setTimeout(() => {
-          updateProgress('progress-3', 60);
-        }, 2200);
-      }, 1000);
-      break;
-
-    case 3: // 知識優化完成
-      // 完成所有進度條
-      setTimeout(() => {
-        updateProgress('progress-1', 100);
-        updateProgress('progress-2', 100);
-        updateProgress('progress-3', 100);
-      }, 500);
-
-      // 增強核心脈動效果
-      setTimeout(() => {
-        const core = document.querySelector('.knowledge-core');
-        if (core) {
-          core.style.boxShadow = '0 0 40px #ffbb00';
-          core.style.animation = 'pulse 2s infinite alternate';
-        }
-      }, 1000);
-
-      // 清除計時器
-      if (docFlowTimer) {
-        clearInterval(docFlowTimer);
-        docFlowTimer = null;
+          item.querySelector('.optimization-status').textContent = '完成';
+        }, 300 * index);
       }
-      break;
+    });
+
+    // 增強核心脈動
+    if (knowledgeCore) {
+      knowledgeCore.classList.add('enhanced-pulse');
+    }
+  }
+}
+
+// 根據進度更新元素
+export function handleProgress(stepIndex, progress) {
+  // 步驟0: 初始化 RAG 架構
+  if (stepIndex === 0) {
+    // 在50%進度時顯示核心
+    if (progress >= 50 && knowledgeCore) {
+      knowledgeCore.classList.add('active');
+    }
+
+    // 在75%進度時顯示核心環
+    if (progress >= 75 && coreRing) {
+        coreRing.forEach(ring => ring.classList.add('active'));
+    }
   }
 }
 
@@ -349,4 +352,5 @@ export function cleanup() {
     clearInterval(docFlowTimer);
     docFlowTimer = null;
   }
+  resetElements(); //Added to reset elements on cleanup.
 }
