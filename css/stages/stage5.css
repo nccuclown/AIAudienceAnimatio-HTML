@@ -1,3 +1,4 @@
+
 /* 第五階段 - 分析報告 */
 .report-container {
   position: relative;
@@ -143,7 +144,7 @@
 }
 
 .age-chart {
-  height: 80px;
+  height: 70px;
   margin-bottom: 10px;
 }
 
@@ -151,7 +152,7 @@
   display: flex;
   justify-content: space-between;
   gap: 8px;
-  height: 60px;
+  height: 50px;
   align-items: flex-end;
 }
 
@@ -180,25 +181,25 @@
 .age-bar-4.active { height: 10%; }
 
 .age-label {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: #d1d5db;
-  margin-top: 5px;
+  margin-top: 3px;
 }
 
 .behavior-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  gap: 10px;
   padding: 5px;
 }
 
 .behavior-label {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #aaa;
 }
 
 .behavior-value {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: white;
   font-weight: bold;
 }
@@ -215,16 +216,16 @@
 .interest-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 15px;
+  gap: 6px;
+  margin-bottom: 10px;
 }
 
 .interest-tag {
   background-color: rgba(255, 184, 0, 0.15);
   color: #ffbb00;
-  padding: 5px 10px;
+  padding: 4px 8px;
   border-radius: 4px;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   border: 1px solid rgba(255, 184, 0, 0.3);
   opacity: 0;
   transform: scale(0.9);
@@ -237,11 +238,11 @@
 }
 
 .analysis-box {
-  padding: 12px;
+  padding: 10px;
   background-color: rgba(255, 184, 0, 0.1);
   border-radius: 6px;
-  font-size: 0.9rem;
-  line-height: 1.4;
+  font-size: 0.85rem;
+  line-height: 1.3;
   color: #d1d5db;
   border: 1px solid rgba(255, 184, 0, 0.2);
   opacity: 0;
@@ -256,13 +257,13 @@
 
 .analysis-title {
   color: #ffbb00;
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   font-weight: bold;
 }
 
 .marketing-suggestions {
-  margin-top: 15px;
-  padding: 10px;
+  margin-top: 10px;
+  padding: 8px;
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 5px;
   opacity: 0;
@@ -274,20 +275,20 @@
 }
 
 .marketing-title {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: bold;
   color: #26c6da;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .suggestion-list {
   margin: 0;
-  padding-left: 20px;
-  font-size: 0.8rem;
+  padding-left: 18px;
+  font-size: 0.75rem;
 }
 
 .suggestion-item {
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   opacity: 0;
   transition: opacity 0.5s ease;
 }

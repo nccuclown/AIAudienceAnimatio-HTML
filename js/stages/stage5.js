@@ -57,16 +57,12 @@ export function handleStepStart(stepIndex) {
       // 顯示報告容器
       const reportContainer = Utils.getElement('report-container');
       Utils.showElement(reportContainer);
-      
-      // 確保容器適應中央區域
+
+      // 確保報告容器在視窗中正確顯示
       setTimeout(() => {
-        const mainArea = document.querySelector('.stage-container');
-        if (mainArea) {
-          const mainHeight = mainArea.offsetHeight;
-          const mainWidth = mainArea.offsetWidth;
-          reportContainer.style.height = (mainHeight * 0.8) + 'px';
-          reportContainer.style.width = (mainWidth * 0.9) + 'px';
-        }
+        // 調整容器大小以符合畫面
+        reportContainer.style.opacity = '1';
+        reportContainer.style.transform = 'scale(1)';
       }, 100);
       break;
 
