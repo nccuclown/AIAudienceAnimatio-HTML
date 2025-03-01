@@ -1,0 +1,98 @@
+Replit version 9c3b0157, pid2 version 0.0.1039
+_app-b1f50fa53de183ff.js:16 
+      /////////////////////
+   ///////////////////////////
+  ////////@@@@@@@//////////////
+  ////////@@@@@@@//////////////
+  ////////@@@@@@@//////////////        Curious and driven?
+  ///////////////@@@@@@@///////        Work with us!
+  ///////////////@@@@@@@///////
+  ///////////////@@@@@@@///////        https://join.replit.com/hack.with.us
+  ////////@@@@@@@//////////////
+  ////////@@@@@@@//////////////
+  ////////@@@@@@#//////////////
+   ///////////////////////////
+      /////////////////////
+      
+_app-b1f50fa53de183ff.js:16 [LaunchDarkly] LaunchDarkly client initialized
+icons.util.repl.co/bash.svg:1 
+            
+            
+           Failed to load resource: net::ERR_NAME_NOT_RESOLVEDUnderstand this errorAI
+/~:1 Banner not shown: beforeinstallpromptevent.preventDefault() called. The page must call beforeinstallpromptevent.prompt() to show the banner.
+7Error while parsing the 'sandbox' attribute: 'allow-downloads-without-user-activation' is an invalid sandbox flag.Understand this errorAI
+framework-9dc1c240702875eb.js:1 Unrecognized feature: 'ambient-light-sensor'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Unrecognized feature: 'battery'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Unrecognized feature: 'execution-while-not-rendered'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Unrecognized feature: 'execution-while-out-of-viewport'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Unrecognized feature: 'layout-animations'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Unrecognized feature: 'legacy-image-formats'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Unrecognized feature: 'navigation-override'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Unrecognized feature: 'oversized-images'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Unrecognized feature: 'publickey-credentials'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Unrecognized feature: 'speaker-selection'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Unrecognized feature: 'unoptimized-images'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Unrecognized feature: 'unsized-media'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Allow attribute will take precedence over 'allowfullscreen'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+framework-9dc1c240702875eb.js:1 Allow attribute will take precedence over 'allowpaymentrequest'.
+_ @ framework-9dc1c240702875eb.js:1Understand this warningAI
+/graphql:1 
+            
+            
+           Failed to load resource: net::ERR_INTERNET_DISCONNECTEDUnderstand this errorAI
+/graphql:1 
+            
+            
+           Failed to load resource: net::ERR_INTERNET_DISCONNECTEDUnderstand this errorAI
+AIAudienceAnimatio-HTML:1 Access to fetch at 'https://sp.replit.com/v1/t' from origin 'https://replit.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.Understand this errorAI
+sp.replit.com/v1/t:1 
+            
+            
+           Failed to load resource: net::ERR_FAILEDUnderstand this errorAI
+AIAudienceAnimatio-HTML:1 Access to fetch at 'https://sp.replit.com/v1/t' from origin 'https://replit.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.Understand this errorAI
+sp.replit.com/v1/t:1 
+            
+            
+           Failed to load resource: net::ERR_FAILEDUnderstand this errorAI
+AIAudienceAnimatio-HTML:1 Access to fetch at 'https://sp.replit.com/v1/t' from origin 'https://replit.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.Understand this errorAI
+sp.replit.com/v1/t:1 
+            
+            
+           Failed to load resource: net::ERR_FAILEDUnderstand this errorAI
+AIAudienceAnimatio-HTML:1 Access to fetch at 'https://sp.replit.com/v1/t' from origin 'https://replit.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.Understand this errorAI
+sp.replit.com/v1/t:1 
+            
+            
+           Failed to load resource: net::ERR_FAILEDUnderstand this errorAI
+workspace_iframe.html:32 Unrecognized feature: 'ambient-light-sensor'.Understand this warningAI
+workspace_iframe.html:32 Unrecognized feature: 'battery'.Understand this warningAI
+workspace_iframe.html:32 Unrecognized feature: 'execution-while-not-rendered'.Understand this warningAI
+workspace_iframe.html:32 Unrecognized feature: 'execution-while-out-of-viewport'.Understand this warningAI
+workspace_iframe.html:32 Unrecognized feature: 'layout-animations'.Understand this warningAI
+workspace_iframe.html:32 Unrecognized feature: 'legacy-image-formats'.Understand this warningAI
+workspace_iframe.html:32 Unrecognized feature: 'navigation-override'.Understand this warningAI
+workspace_iframe.html:32 Unrecognized feature: 'oversized-images'.Understand this warningAI
+workspace_iframe.html:32 Unrecognized feature: 'publickey-credentials'.Understand this warningAI
+workspace_iframe.html:32 Unrecognized feature: 'speaker-selection'.Understand this warningAI
+workspace_iframe.html:32 Unrecognized feature: 'unoptimized-images'.Understand this warningAI
+workspace_iframe.html:32 Unrecognized feature: 'unsized-media'.Understand this warningAI
+workspace_iframe.html:32 Allow attribute will take precedence over 'allowfullscreen'.Understand this warningAI
+workspace_iframe.html:32 Allow attribute will take precedence over 'allowpaymentrequest'.Understand this warningAI
+Console.js:61 RAG步驟開始: 0
+Console.js:61 RAG步驟開始: 1
+761Chrome is moving towards a new experience that allows users to choose to browse without third-party cookies.Understand this warningAI
+Console.js:61 RAG步驟開始: 2
+Console.js:61 RAG步驟開始: 3
