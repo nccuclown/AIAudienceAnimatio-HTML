@@ -1,8 +1,8 @@
 /* 第五階段 - 分析報告 */
 .report-container {
   position: relative;
-  width: 320px;
-  margin: 0 auto;
+  width: 600px;
+  margin: 20px 0;
   background-color: rgba(10, 10, 16, 0.95);
   border-radius: 12px;
   padding: 18px;
