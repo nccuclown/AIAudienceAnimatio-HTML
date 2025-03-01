@@ -128,6 +128,11 @@ const Config = {
         description: "分析客戶產品特性和需求"
       },
       { 
+        name: "深度匹配", 
+        duration: 3000,
+        description: "AI 演算法執行深度受眾匹配"
+      },
+      { 
         name: "受眾細分", 
         duration: 3000,
         description: "依據匹配結果進行受眾細分"
@@ -429,36 +434,6 @@ const Config = {
         <!-- 细分进度框 -->
         <div class="match-segment-box" id="match-segment-box">
           <div class="segment-title">細分受眾進行中</div>
-
-          <div style="margin-bottom: 8px;">
-            <div class="progress-label">
-              <span>偏好匹配</span>
-              <span id="preference-percentage">0%</span>
-            </div>
-            <div class="progress-container">
-              <div class="progress-bar" id="preference-bar" style="background-color: #26c6da;"></div>
-            </div>
-          </div>
-
-          <div style="margin-bottom: 8px;">
-            <div class="progress-label">
-              <span>消費力評估</span>
-              <span id="spending-percentage">0%</span>
-            </div>
-            <div class="progress-container">
-              <div class="progress-bar" id="spending-bar" style="background-color: #ff8a00;"></div>
-            </div>
-          </div>
-
-          <div>
-            <div class="progress-label">
-              <span>行為模式分析</span>
-              <span id="behavior-percentage">0%</span>
-            </div>
-            <div class="progress-container">
-              <div class="progress-bar" id="behavior-bar" style="background-color: #ffbb00;"></div>
-            </div>
-          </div>
         </div>
 
         <!-- 匹配結果 -->
