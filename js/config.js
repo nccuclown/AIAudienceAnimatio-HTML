@@ -437,9 +437,8 @@ const Config = {
           科技偏好用戶: 1.8M
         </div>
 
-        <div class="match-criteria" id="match-criteria-2" style="top: 45%; left: 18%;">
+        <div class="match-criteria" id="match-criteria-2" style="top: 45%; left: 15%;">
           <div style="margin-bottom: 3px; color: #ff8a00;">消費力匹配</div>
-          高消費族群: 2.3M
         </div>
 
         <!-- 细分进度框 -->
