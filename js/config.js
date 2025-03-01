@@ -300,32 +300,6 @@ const Config = {
             </div>
           </div>
         </div>
-      </div>-ring-1"></div>
-        <div class="core-ring" id="core-ring-2"></div>
-      </div>
-
-      <!-- 文檔粒子 -->
-      <div class="doc-particle" id="doc-particle-1" style="top: 30%; left: 60%; background-color: #ffbb00;"></div>
-      <div class="doc-particle" id="doc-particle-2" style="top: 60%; left: 70%; background-color: #ff8a00;"></div>
-      <div class="doc-particle" id="doc-particle-3" style="top: 20%; left: 40%; background-color: #26c6da;"></div>
-      <div class="doc-particle" id="doc-particle-4" style="top: 50%; left: 30%; background-color: #ff5500;"></div>
-      <div class="doc-particle" id="doc-particle-5" style="top: 70%; left: 50%; background-color: #ffbb00;"></div>
-
-      <!-- 知识库优化 -->
-      <div class="optimization-box" id="optimization-box">
-        <div class="optimization-title">知識庫優化</div>
-        <div class="optimization-item">
-          <span class="optimization-dot" style="background-color: #26c6da;"></span>
-          檢索速度: <span class="optimization-status" id="retrieval-speed">優化中...</span>
-        </div>
-        <div class="optimization-item">
-          <span class="optimization-dot" style="background-color: #ff8a00;"></span>
-          關聯網絡: <span class="optimization-status" id="relation-network">建立中...</span>
-        </div>
-        <div class="optimization-item">
-          <span class="optimization-dot" style="background-color: #ff5500;"></span>
-          準確度測試: <span class="optimization-status" id="accuracy-test">測試中...</span>
-        </div>
       </div>
     `,
 
