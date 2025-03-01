@@ -45,6 +45,11 @@
   100% { transform: translate(100px, 10px); opacity: 0; }
 }
 
+@keyframes moveToCore {
+  0% { transform: translate(0, 0); opacity: 0.7; }
+  100% { transform: translate(var(--flow-x, 0), var(--flow-y, 0)); opacity: 0; }
+}
+
 @keyframes fadeInUp {
   from { 
     opacity: 0; 
