@@ -5,43 +5,6 @@
 
 ## 第一階段：消費者資料庫
 
-## 第二階段：RAG知識庫建立 (更新版)
-
-### 動畫流程
-
-1. **初始化 RAG 架構** (0-2000ms)
-   - RAG標題和副標題淡入 (`rag-header`) - 頂部
-   - 知識庫核心淡入 (`knowledge-core`) - 中央位置
-   - 核心環開始旋轉 (`core-ring`) - 環繞核心，共3層
-
-2. **整合產業資料** (2000-5000ms)
-   - RAG工作流程顯示 (`rag-workflow`) - 中下部區域
-   - 三大步驟框依次淡入 (`retrieval-box`, `augmentation-box`, `generation-box`)
-   - 連接箭頭顯示 (`rag-workflow-arrow`) - 步驟框之間
-   - 文檔粒子開始顯示 (`doc-particle`) - 分布在整個視覺區域
-   - 數據統計框顯示 (`rag-stats`) - 右下角位置
-
-3. **知識索引建立** (5000-8000ms)
-   - 知識點標籤開始顯示 (`knowledge-tag`) - 分布在視覺區域周圍
-   - 知識庫優化進度框顯示 (`rag-progress`) - 左下角位置
-   - 進度條開始填充 (`progress-fill`) - 進度框內部
-
-4. **知識優化完成** (8000-10000ms)
-   - 所有進度條達到100% - 進度框內部
-   - 核心脈動效果增強 (`corePulse` 動畫) - 知識庫核心
-
-### 使用元件
-- **RAG標題區域** (`rag-header`) - `css/stages/stage2.css` - 頂部
-- **知識庫核心** (`knowledge-core`) - `css/stages/stage2.css` - 中央位置
-- **核心環** (`core-ring`) - `css/stages/stage2.css` - 環繞核心
-- **RAG工作流程** (`rag-workflow`) - `css/stages/stage2.css` - 中下部區域
-- **步驟框** (`rag-step-box`) - `css/stages/stage2.css` - 工作流程內部
-- **文檔粒子** (`doc-particle`) - `css/stages/stage2.css` - 分布在視覺區域
-- **知識點標籤** (`knowledge-tag`) - `css/stages/stage2.css` - 分布在視覺區域周圍
-- **數據統計框** (`rag-stats`) - `css/stages/stage2.css` - 右下角位置
-- **知識庫優化進度框** (`rag-progress`) - `css/stages/stage2.css` - 左下角位置
-
-
 ### 動畫流程
 
 1. **初始化資料基礎** (0-2000ms)

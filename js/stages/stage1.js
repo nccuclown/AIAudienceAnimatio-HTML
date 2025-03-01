@@ -3,75 +3,151 @@ import * as Utils from '../utils.js';
 
 // 數據計數計時器
 let dataCounterTimer = null;
-// 用戶輪廓點的目標位置
-const profilePointPositions = [];
+let profileCreated = false;
 
-// 初始化用戶輪廓點的目標位置
-function initProfilePointPositions() {
-  // 定義人臉輪廓的坐標點，相對於容器的百分比
-  // 這些坐標定義了一個基本的人臉輪廓
-  const faceOutline = [
-    // 頭部輪廓 - 橢圓形
-    ...Array.from({ length: 20 }, (_, i) => {
-      const angle = Math.PI * 2 * (i / 20);
-      return {
-        x: 50 + 45 * Math.cos(angle),
-        y: 50 + 40 * Math.sin(angle)
-      };
-    }),
-    // 眼睛
-    { x: 35, y: 40 }, { x: 37, y: 38 }, { x: 39, y: 40 }, { x: 37, y: 42 },
-    { x: 65, y: 40 }, { x: 63, y: 38 }, { x: 61, y: 40 }, { x: 63, y: 42 },
-    // 鼻子
-    { x: 50, y: 50 }, { x: 47, y: 55 }, { x: 53, y: 55 },
-    // 嘴巴
-    { x: 40, y: 65 }, { x: 45, y: 68 }, { x: 50, y: 70 },
-    { x: 55, y: 68 }, { x: 60, y: 65 }
-  ];
+// 生成人臉輪廓點位置算法
+function generateFacePositions() {
+  const positions = [];
 
-  return faceOutline;
+  // 頭部輪廓 - 外圍明確點
+  const headOutlinePoints = 30;
+  for (let i = 0; i < headOutlinePoints; i++) {
+    const angle = Math.PI * 2 * (i / headOutlinePoints);
+    // 橢圓形頭部輪廓
+    const radiusX = 46;
+    const radiusY = 55;
+    const x = 50 + radiusX * Math.cos(angle);
+    const y = 40 + radiusY * Math.sin(angle) * 0.75; // 上窄下寬的橢圓
+
+    // 下巴形狀調整
+    let adjustedY = y;
+    if (angle > Math.PI * 0.6 && angle < Math.PI * 1.4) {
+      adjustedY = y + 5 * Math.sin((angle - Math.PI * 0.6) / (Math.PI * 0.8) * Math.PI);
+    }
+
+    positions.push({ 
+      x: x, 
+      y: adjustedY, 
+      isEmphasis: true,
+      delay: i * 50 // 讓輪廓按順序形成
+    });
+  }
+
+  // 面部特徵 - 眼睛
+  // 左眼
+  const leftEyeCenterX = 40;
+  const eyeCenterY = 35;
+  const eyeSize = 5;
+  const eyePoints = 8;
+
+  for (let i = 0; i < eyePoints; i++) {
+    const angle = Math.PI * 2 * (i / eyePoints);
+    const x = leftEyeCenterX + eyeSize * Math.cos(angle);
+    const y = eyeCenterY + eyeSize * Math.sin(angle) * 0.6; // 橢圓眼睛
+    positions.push({ 
+      x, y, 
+      isEmphasis: true,
+      delay: 200 + i * 30
+    });
+  }
+
+  // 右眼
+  const rightEyeCenterX = 60;
+  for (let i = 0; i < eyePoints; i++) {
+    const angle = Math.PI * 2 * (i / eyePoints);
+    const x = rightEyeCenterX + eyeSize * Math.cos(angle);
+    const y = eyeCenterY + eyeSize * Math.sin(angle) * 0.6;
+    positions.push({ 
+      x, y, 
+      isEmphasis: true,
+      delay: 200 + i * 30
+    });
+  }
+
+  // 嘴巴 - 簡單的弧線
+  const mouthPoints = 10;
+  const mouthCenterY = 65;
+  const mouthWidth = 20;
+  const mouthHeight = 5;
+
+  for (let i = 0; i < mouthPoints; i++) {
+    // 生成半圓弧
+    const t = i / (mouthPoints - 1);
+    const angle = Math.PI * t;
+    const x = 50 + mouthWidth * Math.cos(angle);
+    const y = mouthCenterY + mouthHeight * Math.sin(angle);
+    positions.push({ 
+      x, y, 
+      isEmphasis: true,
+      delay: 400 + i * 20
+    });
+  }
+
+  // 鼻子 - 簡單的直線
+  const noseLine = 5;
+  for (let i = 0; i < noseLine; i++) {
+    const t = i / (noseLine - 1);
+    const x = 50;
+    const y = 40 + t * 15;
+    positions.push({ 
+      x, y, 
+      isEmphasis: true,
+      delay: 350 + i * 30
+    });
+  }
+
+  // 填充粒子 - 臉部區域
+  const facePoints = 180;
+  for (let i = 0; i < facePoints; i++) {
+    // 面部輪廓內隨機分佈
+    const randomAngle = Math.random() * Math.PI * 2;
+    const randomRadius = Math.random() * 38; // 比頭部輪廓小
+
+    // 橢圓形分佈
+    const x = 50 + randomRadius * Math.cos(randomAngle);
+    const y = 40 + randomRadius * Math.sin(randomAngle) * 0.8;
+
+    // 確保點在合理的臉部區域內
+    const inFace = (
+      y > 20 && // 不要太靠近頭頂
+      y < 75 && // 不要超過下巴
+      !(y < 40 && (x < 35 || x > 65)) // 避開額頭兩側
+    );
+
+    if (inFace) {
+      positions.push({ 
+        x, y, 
+        isEmphasis: false,
+        delay: 500 + Math.random() * 500
+      });
+    }
+  }
+
+  return positions;
 }
 
-// 創建用戶輪廓元素
+// 創建用戶輪廓
 function createUserProfile() {
-  // 初始化目標位置
-  const positions = initProfilePointPositions();
+  if (profileCreated) return;
+  profileCreated = true;
 
   // 創建用戶輪廓容器
   const container = document.createElement('div');
   container.className = 'user-profile-container';
   container.id = 'user-profile';
 
-  // 創建用戶輪廓SVG
-  const outline = document.createElement('div');
-  outline.className = 'profile-outline';
-  outline.id = 'profile-outline';
-
-  // 使用SVG繪製人臉輪廓
-  outline.innerHTML = `
-    <svg width="100%" height="100%" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50,10 
-               C25,10 15,30 15,50 
-               C15,75 30,90 50,90 
-               C70,90 85,75 85,50 
-               C85,30 75,10 50,10 Z
-               M35,40 C36,38 38,38 39,40 C38,42 36,42 35,40 Z
-               M65,40 C64,38 62,38 61,40 C62,42 64,42 65,40 Z
-               M50,50 Q45,60 40,65 Q50,70 60,65 Q55,60 50,50 Z" 
-            fill="none" stroke="#ffbb00" stroke-width="1" />
-    </svg>
-  `;
-
-  container.appendChild(outline);
+  // 獲取人臉形狀的點位置
+  const facePositions = generateFacePositions();
 
   // 創建數據點
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < facePositions.length; i++) {
+    const position = facePositions[i];
     const dot = document.createElement('div');
     dot.className = 'profile-data-dot';
 
-    // 設置隨機初始位置（相對於球體容器）
+    // 設置隨機初始位置（在容器外圍）
     const randomAngle = Math.random() * Math.PI * 2;
-    const randomRadius = 80 + Math.random() * 70; // 距離中心的距離
+    const randomRadius = 150 + Math.random() * 100; // 遠離中心
 
     const startX = 50 + Math.cos(randomAngle) * randomRadius;
     const startY = 50 + Math.sin(randomAngle) * randomRadius;
@@ -79,27 +155,48 @@ function createUserProfile() {
     dot.style.left = `${startX}%`;
     dot.style.top = `${startY}%`;
 
-    // 隨機選擇一個目標位置
-    const targetIndex = Math.floor(Math.random() * positions.length);
-    const target = positions[targetIndex];
-
-    // 計算並存儲目標位置（相對於初始位置的偏移）
-    const destX = target.x - startX;
-    const destY = target.y - startY;
+    // 設置目標位置（人臉上的位置）
+    const destX = position.x - startX;
+    const destY = position.y - startY;
 
     dot.style.setProperty('--dest-x', `${destX}%`);
     dot.style.setProperty('--dest-y', `${destY}%`);
+
+    // 設置特殊樣式
+    if (position.isEmphasis) {
+      dot.classList.add('emphasis');
+    }
+
+    // 隨機添加閃爍效果
+    if (Math.random() > 0.7) {
+      dot.classList.add('twinkle');
+      dot.style.animationDelay = `${Math.random() * 2}s`;
+    }
+
+    // 設置自訂資料屬性以便後續使用
+    dot.dataset.delay = position.delay || 0;
 
     container.appendChild(dot);
   }
 
   // 添加到球體容器
-  const sphereContainer = Utils.getElement('stage-visual-0');
-  sphereContainer.appendChild(container);
+  const sphereContainer = document.querySelector('.sphere-container');
+  if (sphereContainer) {
+    sphereContainer.appendChild(container);
+  } else {
+    console.warn("找不到球體容器");
+    const stageVisual = document.getElementById('stage-visual-0');
+    if (stageVisual) {
+      stageVisual.appendChild(container);
+    }
+  }
 }
 
 // 重置元素
 export function resetElements() {
+  // 重置狀態
+  profileCreated = false;
+
   // 重置球體
   Utils.hideElement(Utils.getElement('sphere'));
 
@@ -144,7 +241,9 @@ export function handleStepStart(stepIndex) {
       Utils.showElement(Utils.getElement('sphere'));
 
       // 創建用戶輪廓
-      createUserProfile();
+      setTimeout(() => {
+        createUserProfile();
+      }, 500);
       break;
 
     case 1: // 載入消費者輪廓
@@ -154,10 +253,10 @@ export function handleStepStart(stepIndex) {
       });
 
       // 顯示用戶輪廓的數據點
-      document.querySelectorAll('.profile-data-dot').forEach((el, index) => {
+      document.querySelectorAll('.profile-data-dot').forEach(el => {
         setTimeout(() => {
-          Utils.showElement(el);
-        }, index * 20); // 分散顯示時間
+          el.classList.add('active');
+        }, 300); // 快速顯示所有點
       });
 
       // 顯示計數器
@@ -171,20 +270,26 @@ export function handleStepStart(stepIndex) {
       // 顯示標籤容器
       Utils.showElement(Utils.getElement('tag-container'));
 
-      // 開始數據點移動到目標位置
-      document.querySelectorAll('.profile-data-dot').forEach((el, index) => {
+      // 開始數據點移動到目標位置 - 根據延遲依序移動
+      document.querySelectorAll('.profile-data-dot').forEach(el => {
+        const delay = parseInt(el.dataset.delay) || 0;
         setTimeout(() => {
           el.classList.add('moving');
-        }, 100 + index * 15); // 分散開始時間
+        }, delay + 100);
       });
+
+      // 在所有點到位後添加容器發光效果
+      setTimeout(() => {
+        const container = document.getElementById('user-profile');
+        if (container) {
+          container.classList.add('complete');
+        }
+      }, 2500);
       break;
 
     case 3: // 啟動預測模型
       // 顯示預測AI
       Utils.showElement(Utils.getElement('predictive-ai-box'));
-
-      // 顯示用戶輪廓外框
-      Utils.showElement(Utils.getElement('profile-outline'));
       break;
   }
 }
@@ -215,7 +320,7 @@ export function handleProgress(stepIndex, progress) {
 function startDataCounter() {
   let count = 0;
   const maxCount = 3000000;
-  const steps = 50; // 增加的步數
+  const steps = 50;
   const increment = Math.floor(maxCount / steps);
 
   // 清除現有計時器
