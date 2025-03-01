@@ -1,6 +1,11 @@
 // 第五階段 - 受眾分析報告
 import * as Utils from '../utils.js';
 
+const ANIMATION_TIMES = {
+  SUGGESTIONS_START: 500,
+  SUGGESTION_ITEM_INTERVAL: 200,
+};
+
 // 重置元素
 export function resetElements() {
   // 重置報告容器
@@ -63,7 +68,7 @@ export function handleStepStart(stepIndex) {
         // 確保元素存在後再進行操作
         if (reportContainer) {
           reportContainer.classList.add('active');
-          
+
           // 逐步顯示各個報告區段
           setTimeout(() => {
             const sections = document.querySelectorAll('.report-section');
@@ -72,12 +77,18 @@ export function handleStepStart(stepIndex) {
                 section.classList.add('active');
               }, index * 200);
             });
-            
-            // 顯示性別標籤
+
+            // 顯示性別標籤和條形圖 (調整順序)
             setTimeout(() => {
               const genderLabels = Utils.getElement('gender-labels');
+              const maleBar = Utils.getElement('male-bar');
+              const femaleBar = Utils.getElement('female-bar');
+
               if (genderLabels) Utils.showElement(genderLabels);
-              
+              if (maleBar) Utils.showElement(maleBar);
+              if (femaleBar) Utils.showElement(femaleBar);
+
+
               // 顯示年齡條
               const ageBars = document.querySelectorAll('.age-bar');
               ageBars.forEach((bar) => {
@@ -103,72 +114,41 @@ export function handleStepStart(stepIndex) {
       break;
 
     case 3: // 最終報告生成
-      // 顯示分析框
-      Utils.showElement(Utils.getElement('analysis-box'));
-
       // 顯示行銷建議
       Utils.showElement(Utils.getElement('marketing-suggestions'));
+
+      // 逐個顯示建議項目
+      document.querySelectorAll('.suggestion-item').forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add('active');
+        }, ANIMATION_TIMES.SUGGESTIONS_START + index * ANIMATION_TIMES.SUGGESTION_ITEM_INTERVAL);
+      });
+
+      // 顯示報告發光效果
+      setTimeout(() => {
+        const reportGlow = Utils.getElement('report-glow');
+        if (reportGlow) reportGlow.classList.add('active');
+      }, ANIMATION_TIMES.SUGGESTIONS_START + 800);
       break;
   }
 }
 
 // 處理進度更新
 export function handleProgress(stepIndex, progress) {
+  // 可以根據進度百分比更新某些元素
   switch(stepIndex) {
     case 1: // 人口統計分析
-      // 更新性別分布圖
-      if (progress > 40) {
-        Utils.showElement(Utils.getElement('male-bar'));
-        Utils.showElement(Utils.getElement('female-bar'));
-      }
-
-      if (progress > 50) {
-        Utils.showElement(Utils.getElement('gender-labels'));
-      }
-
-      // 更新年齡分布圖
-      if (progress > 60) {
-        // 計算每個年齡組的高度百分比
-        const heights = [15, 45, 30, 10]; // 定義的最終高度
-
-        // 根據進度計算當前高度
-        const currentProgress = Math.max(0, progress - 60); // 從60%開始計算
-        const factor = currentProgress / 40; // 40% = 100 - 60
-
-        // 設置每個年齡組的高度
-        heights.forEach((height, index) => {
-          const bar = Utils.getElement(`age-bar-${index + 1}`);
-          const currentHeight = Math.min(Math.floor(height * factor), height);
-          bar.style.height = `${currentHeight}%`;
-          Utils.showElement(bar);
-        });
+      if (progress > 80) {
+        // 確保性別分布完全顯示
+        const maleBar = Utils.getElement('male-bar');
+        const femaleBar = Utils.getElement('female-bar');
+        if (maleBar) maleBar.classList.add('active');
+        if (femaleBar) femaleBar.classList.add('active');
       }
       break;
 
     case 2: // 行為偏好分析
-      // 顯示行為項目
-      if (progress > 25) Utils.showElement(Utils.getElement('behavior-item-1'));
-      if (progress > 40) Utils.showElement(Utils.getElement('behavior-item-2'));
-      if (progress > 55) Utils.showElement(Utils.getElement('behavior-item-3'));
-      if (progress > 70) Utils.showElement(Utils.getElement('behavior-item-4'));
-
-      // 顯示興趣標籤
-      if (progress > 50) Utils.showElement(Utils.getElement('interest-tag-1'));
-      if (progress > 60) Utils.showElement(Utils.getElement('interest-tag-2'));
-      if (progress > 70) Utils.showElement(Utils.getElement('interest-tag-3'));
-      if (progress > 80) Utils.showElement(Utils.getElement('interest-tag-4'));
-      break;
-
-    case 3: // 最終報告生成
-      // 顯示建議項目
-      if (progress > 30) Utils.showElement(Utils.getElement('suggestion-item-1'));
-      if (progress > 50) Utils.showElement(Utils.getElement('suggestion-item-2'));
-      if (progress > 70) Utils.showElement(Utils.getElement('suggestion-item-3'));
-
-      // 顯示報告發光效果
-      if (progress > 90) {
-        Utils.showElement(Utils.getElement('report-glow'));
-      }
+      // 可以根據進度更新分析框的透明度等
       break;
   }
 }
