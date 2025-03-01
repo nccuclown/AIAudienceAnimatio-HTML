@@ -60,9 +60,32 @@ export function handleStepStart(stepIndex) {
 
       // 確保報告容器在視窗中正確顯示
       setTimeout(() => {
-        // 調整容器大小以符合畫面
-        reportContainer.style.opacity = '1';
-        reportContainer.style.transform = 'scale(1)';
+        // 確保元素存在後再進行操作
+        if (reportContainer) {
+          reportContainer.classList.add('active');
+          
+          // 逐步顯示各個報告區段
+          setTimeout(() => {
+            const sections = document.querySelectorAll('.report-section');
+            sections.forEach((section, index) => {
+              setTimeout(() => {
+                section.classList.add('active');
+              }, index * 200);
+            });
+            
+            // 顯示性別標籤
+            setTimeout(() => {
+              const genderLabels = Utils.getElement('gender-labels');
+              if (genderLabels) Utils.showElement(genderLabels);
+              
+              // 顯示年齡條
+              const ageBars = document.querySelectorAll('.age-bar');
+              ageBars.forEach((bar) => {
+                bar.classList.add('active');
+              });
+            }, 500);
+          }, 300);
+        }
       }, 100);
       break;
 
